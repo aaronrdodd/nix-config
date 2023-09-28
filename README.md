@@ -178,11 +178,10 @@ ssh-keygen -t ed25519
   your [GitHub SSH Configuration] as an *SSH key*.
 - **If the host should be able to push commits to GitHub**: add the public key
   to the [GitHub SSH Configuration] as a *Signing key*, and also add it to
-  [the `allowed_signers` file].
+  the `allowed_signers` file.
 - **If the host should be able to connect to other machines**: add the public
-  key to `authorizedKeys` to the [nixos user configuration].
+  key to `openssh.authorizedKeys.keys` to the [nixos user configuration].
 
 [GitHub SSH Configuration]: https://github.com/settings/keys
 [nixos user configuration]: ./nixos/_common/users
-[the `allowed_signers` file]: ./home/aaron/_common/cli/git.nix
 
