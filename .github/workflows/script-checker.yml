@@ -1,0 +1,25 @@
+name: Script Checker
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  script-checker:
+    name: Script Checker
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v4
+      - name: Enable Magic Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@v2
+      - name: Run Shell Check
+        runs: nix-shell -p shellcheck --run 'shellcheck $(find . -type f -wholename "**/*.sh" -executable)'
+
