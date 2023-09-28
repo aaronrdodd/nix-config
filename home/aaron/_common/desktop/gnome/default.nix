@@ -25,6 +25,17 @@ in
       ];
     };
 
+    "org/gnome/shell" = {
+      favorite-apps = [
+        "firefox.desktop"
+        "com.github.rafostar.Clapper.desktop"
+        "io.bassi.Amberol.desktop"
+        "com.raggesilver.BlackBox.desktop"
+        "org.gnome.Nautilus.desktop"
+        "org.gnome.Software.desktop"
+      ];
+    };
+
     "com/raggesilver/BlackBox" = {
       opacity = mkUint32 100;
     };
