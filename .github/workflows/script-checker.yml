@@ -21,5 +21,6 @@ jobs:
       - name: Enable Magic Nix Cache
         uses: DeterminateSystems/magic-nix-cache-action@v2
       - name: Run Shell Check
-        runs: nix-shell -p shellcheck --run 'shellcheck $(find . -type f -wholename "**/*.sh" -executable)'
+        run: |
+          nix-shell -p shellcheck --run 'shellcheck $(find . -type f -wholename "**/*.sh" -executable)'
 
