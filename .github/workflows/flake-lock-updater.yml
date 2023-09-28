@@ -25,7 +25,7 @@ jobs:
             automatic
       - name: Automatically merge flake.lock update
         run: |
-          gh pr merge ${{ steps.flake-update.outputs.pull-request-number }} --squash --delete-branch
+          gh pr merge ${{ steps.flake-update.outputs.pull-request-number }} --auto --squash --delete-branch
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
