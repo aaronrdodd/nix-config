@@ -1,4 +1,4 @@
-name: Code Analysis
+name: Nix Checker
 
 on:
   pull_request:
@@ -8,14 +8,14 @@ on:
   workflow_dispatch:
 
 jobs:
-  code-analysis:
-    name: Code Analysis
+  nix-checker:
+    name: Nix Checker
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: DeterminateSystems/nix-installer-action@v4
       - uses: DeterminateSystems/magic-nix-cache-action@v2
-      - name: Check Code
+      - name: Check Nix
         run: |
           nix fmt
           git diff --exit-code

@@ -1,7 +1,7 @@
 # Aaron's [NixOS] and [Home Manager] configurations
 
-[![code-analysis](https://github.com/aaron-dodd/nix-config/actions/workflows/code-analysis.yml/badge.svg)](https://github.com/aaron-dodd/nix-config/actions/workflows/code-analysis.yml)
 [![flake-checker](https://github.com/aaron-dodd/nix-config/actions/workflows/flake-checker.yml/badge.svg)](https://github.com/aaron-dodd/nix-config/actions/workflows/flake-checker.yml)
+[![nix-checker](https://github.com/aaron-dodd/nix-config/actions/workflows/nix-checker.yml/badge.svg)](https://github.com/aaron-dodd/nix-config/actions/workflows/nix-checker.yml)
 [![script-checker](https://github.com/aaron-dodd/nix-config/actions/workflows/script-checker.yml/badge.svg)](https://github.com/aaron-dodd/nix-config/actions/workflows/script-checker.yml)
 
 [NixOS]: https://nixos.org/
