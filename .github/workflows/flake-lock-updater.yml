@@ -16,11 +16,16 @@ jobs:
       - uses: DeterminateSystems/nix-installer-action@v4
       - uses: DeterminateSystems/magic-nix-cache-action@v2
       - name: Update flake.lock
+        id: flake-update
         uses: DeterminateSystems/update-flake-lock@v20
         with:
           pr-title: "chore: update flake.lock"
-          commit-msg: "chore: update flake.lock"
           pr-labels: |
             dependencies
             automatic
+      - name: Automatically merge flake.lock update
+        run: |
+          gh pr merge ${{ steps.flake-update.outputs.pull-request-number }} --squash --delete-branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
