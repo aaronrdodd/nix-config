@@ -1,0 +1,17 @@
+name: Nix Code Analysis
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deadnix:
+    name: Nix Code Analysis
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@v4
+      - uses: DeterminateSystems/magic-nix-cache-action@v2
+      - uses: astro/deadnix-action@v1
+
