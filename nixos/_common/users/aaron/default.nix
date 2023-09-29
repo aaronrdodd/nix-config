@@ -23,6 +23,7 @@ in
 
     initialPassword = "hunter2";
     packages = with pkgs; [
+      bitwarden-secrets-sdk
       chezmoi
       git
       home-manager
