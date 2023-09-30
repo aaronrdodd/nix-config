@@ -23,6 +23,8 @@ in
 
     initialPassword = "hunter2";
     packages = with pkgs; [
+      bitwarden
+      bitwarden-cli
       bitwarden-secrets-sdk
       chezmoi
       git
