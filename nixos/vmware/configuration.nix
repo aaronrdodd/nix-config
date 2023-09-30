@@ -14,6 +14,7 @@ in
 
     ../_common/global
     ../_common/desktop/gnome.nix
+    ../_common/services/amnesia.nix
     ../_common/services/flatpak.nix
     ../_common/services/localisation.nix
     ../_common/services/mosh.nix

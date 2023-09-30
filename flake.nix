@@ -20,6 +20,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Disk erasure
+    impermanence = {
+      url = "github:nix-community/impermanence";
+    };
+
     # Home directory configuration
     home-manager = {
       url = "github:nix-community/home-manager/release-23.05";

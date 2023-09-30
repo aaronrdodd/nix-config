@@ -3,6 +3,7 @@
 {
   # List your module files here
   # my-module = import ./my-module.nix;
+  amnesia = import ./amnesia;
   oci-containers = import ./oci-containers;
 }
 
