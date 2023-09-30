@@ -28,6 +28,7 @@ in
       chezmoi
       git
       home-manager
+      keepassxc
       tor-browser-bundle-bin
       vim
     ];
