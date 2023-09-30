@@ -59,7 +59,7 @@ in
 
       # Persisting user passwords
       users.mutableUsers = mkForce false;
-      users.users = mkMerge ([{ root.passwordFile = "${cfg.baseDirectory}/passwords/root"; }] ++
+      users.users = mkMerge (
         forEach cfg.users (user:
           {
             "${user}" = {
