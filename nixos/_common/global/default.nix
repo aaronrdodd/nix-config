@@ -5,6 +5,7 @@
     ./home-manager.nix
     ./nix-settings.nix
     ./openssh.nix
+    ./security.nix
   ] ++ (builtins.attrValues outputs.nixosModules);
 
   environment = {
