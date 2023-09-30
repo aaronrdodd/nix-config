@@ -24,6 +24,14 @@ in
       description = "Users to map password files for.";
       default = [ "aaron" ];
     };
+    fileSystem = mkOption {
+      type = types.enum [ "btrfs" "zfs" ];
+      default = "btrfs";
+    };
+    fileSystemPartitionLabel = mkOption {
+      type = types.str;
+      default = "disk-main-root";
+    };
   };
 
   config = mkIf cfg.enable (mkMerge [
@@ -87,6 +95,29 @@ in
     })
     (mkIf config.nixos.oci-containers.enable {
       nixos.oci-containers.volumeBaseDir = "${cfg.baseDirectory}/container-volumes";
+    })
+    (mkIf (cfg.fileSystem == "btrfs") {
+      # Note `mkBefore` is used instead of `mkAfter` here.
+      boot.initrd.postDeviceCommands = mkBefore ''
+        mkdir --parents /mnt
+
+        # We first mount the btrfs root to /mnt
+        # so we can manipulate btrfs subvolumes.
+        mount -t ${cfg.fileSystem} -o subvol=/ /dev/disk/by-partlabel/${cfg.fileSystemPartitionLabel} /mnt
+
+        btrfs subvolume list -o /mnt/root |
+        cut -f9 -d' ' |
+        while read subvolume; do
+          echo "deleting /$subvolume subvolume..."
+          btrfs subvolume delete "/mnt/$subvolume"
+        done &&
+        echo "deleting /root subvolume..." &&
+        btrfs subvolume delete /mnt/root
+
+        btrfs subvolume snapshot /mnt/root-blank /mnt/root
+
+        umount /mnt
+      '';
     })
   ]);
 }
