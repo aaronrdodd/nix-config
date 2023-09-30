@@ -1,11 +1,12 @@
 #! /usr/bin/env nix-shell
-#! nix-shell -i bash -p git
+#! nix-shell -i bash -p gawk git mkpasswd
 # shellcheck shell=bash
 
 set -euo pipefail
 
 TARGET_HOST="${1:-}"
 TARGET_USER="${2:-aaron}"
+TARGET_USER_PASSWORD="${3:-}"
 
 if [ "$(id -u)" -eq 0 ]; then
   echo "ERROR! $(basename "$0") should be run as a regular user"
@@ -43,6 +44,31 @@ if grep -q "data.keyfile" "nixos/$TARGET_HOST/disks.nix"; then
   echo -n "$(head -c32 /dev/random | base64)" > /tmp/data.keyfile
 fi
 
+PERSISTENCE_ENABLED="grep -qE \"amnesia\.enable = true|services/amnesia\.nix\" \"nixos/$TARGET_HOST/configuration.nix\""
+
+if eval "$PERSISTENCE_ENABLED"; then
+  if [[ -z "$TARGET_USER_PASSWORD" ]]; then
+    read -r -s -p "Enter the password for ${TARGET_USER}: " TARGET_USER_PASSWORD
+    echo
+
+    read -r -s -p "Confirm the password for ${TARGET_USER}: " CONFIRM_TARGET_USER_PASSWORD
+    echo
+
+    if [ "$TARGET_USER_PASSWORD" != "$CONFIRM_TARGET_USER_PASSWORD" ]; then
+      unset TARGET_USER_PASSWORD
+      unset CONFIRM_TARGET_USER_PASSWORD
+
+      echo "Passwords do not match. Please try again."
+      exit 1
+    fi
+
+    unset CONFIRM_TARGET_USER_PASSWORD
+  fi
+
+  TARGET_USER_HASH="$(mkpasswd -m sha-512 "$TARGET_USER_PASSWORD")"
+  unset TARGET_USER_PASSWORD
+fi
+
 echo "WARNING! The disks in $TARGET_HOST are about to get wiped"
 echo "         NixOS will be re-installed"
 echo "         This is a destructive operation"
@@ -69,11 +95,32 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   git remote set-url origin git@github.com:aaron-dodd/nix-config.git
   popd
 
+  PERSISTENCE_BASE_DIRECTORY=$(grep -roh "nixos" -e 'amnesia\.baseDirectory = "/[^"]*"' | gawk -F'"' '{print $2}')
+  if eval "$PERSISTENCE_ENABLED"; then
+    if [ -z "$PERSISTENCE_BASE_DIRECTORY" ]; then
+      PERSISTENCE_BASE_DIRECTORY="/persist"
+    fi
+
+    sudo mkdir --parents "/mnt/$PERSISTENCE_BASE_DIRECTORY/passwords"
+    echo -n "$TARGET_USER_HASH" > "/tmp/$TARGET_USER.passwd"
+
+    unset TARGET_USER_HASH
+
+    sudo cp "/tmp/$TARGET_USER.passwd" "/mnt/$PERSISTENCE_BASE_DIRECTORY/passwords/$TARGET_USER"
+    rm -rf "/tmp/$TARGET_USER.passwd"
+  fi
+
   # If there is a keyfile for a data disk, put copy it to the root partition and
   # ensure the permissions are set appropriately.
   if [[ -f "/tmp/data.keyfile" ]]; then
-    sudo cp /tmp/data.keyfile /mnt/etc/data.keyfile
-    sudo chmod 0400 /mnt/etc/data.keyfile
+    if eval "$PERSISTENCE_ENABLED"; then
+      mkdir --parents "/mnt/$PERSISTENCE_BASE_DIRECTORY/etc"
+      sudo cp "/tmp/data.keyfile" "/mnt/$PERSISTENCE_BASE_DIRECTORY/etc/data.keyfile"
+      sudo chmod 0400 "/mnt/$PERSISTENCE_BASE_DIRECTORY/etc/data.keyfile"
+    else
+      sudo cp "/tmp/data.keyfile" "/mnt/etc/data.keyfile"
+      sudo chmod 0400 /mnt/etc/data.keyfile
+    fi
   fi
 fi
 

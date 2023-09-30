@@ -40,6 +40,14 @@
                     mountOptions = [ "compress=zstd" "noatime" ];
                     mountpoint = "/nix";
                   };
+                  "/persist" = {
+                    mountOptions = [ "compress=zstd" ];
+                    mountpoint = "/persist";
+                  };
+                  "/tmp" = {
+                    mountOptions = [ "compress=zstd" "noatime" ];
+                    mountpoint = "/tmp";
+                  };
                 };
               };
             };
