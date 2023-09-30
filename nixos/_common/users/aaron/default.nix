@@ -25,7 +25,6 @@ in
     packages = with pkgs; [
       bitwarden
       bitwarden-cli
-      bitwarden-secrets-sdk
       chezmoi
       git
       home-manager
