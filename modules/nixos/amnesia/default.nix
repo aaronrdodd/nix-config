@@ -2,6 +2,29 @@
 with lib;
 let
   cfg = config.nixos.amnesia;
+
+  btrfsWipeScript = ''
+    mkdir --parents /tmp
+    MNTPOINT=$(mktemp -d)
+
+    (
+      mount -t ${cfg.fileSystem} -o subvol=/ /dev/disk/by-partlabel/${cfg.fileSystemPartitionLabel} "$MNTPOINT"
+      trap 'umount "$MNTPOINT"' EXIT
+
+      btrfs subvolume list -o "$MNTPOINT/root" | cut -f9 -d ' ' |
+      while read -r subvolume; do
+        echo "deleting /$subvolume subvolume..."
+        btrfs subvolume delete "$MNTPOINT/$subvolume"
+      done &&
+      echo "deleting /root subvolume..." &&
+      btrfs subvolume delete "$MNTPOINT/root"
+
+      btrfs subvolume snapshot "$MNTPOINT/root-blank" "$MNTPOINT/root"
+    )
+  '';
+
+  phase1Systemd = config.boot.initrd.systemd.enable;
+
 in
 {
   imports = [
@@ -35,6 +58,8 @@ in
   };
 
   config = mkIf cfg.enable (mkMerge [
+
+    # Common settings
     {
       fileSystems.${cfg.baseDirectory}.neededForBoot = true;
 
@@ -46,7 +71,6 @@ in
         # Folders you want to map
         directories = [
           "/etc/NetworkManager/system-connections"
-          "/var/lib/containers"
           "/var/lib/tailscale"
           "/var/log"
         ];
@@ -70,6 +94,8 @@ in
         )
       );
     }
+
+    # OpenSSH
     (mkIf config.services.openssh.enable {
       # cfg.baseDirectory is the location you plan to store the files
       environment.persistence.${cfg.baseDirectory} = {
@@ -93,31 +119,55 @@ in
         }
       ];
     })
-    (mkIf config.nixos.oci-containers.enable {
-      nixos.oci-containers.volumeBaseDir = "${cfg.baseDirectory}/container-volumes";
+
+    # OCI Containers
+    (mkIf config.nixos.oci-containers.enable (mkMerge [
+      {
+        nixos.oci-containers.volumeBaseDir = "${cfg.baseDirectory}/container-volumes";
+      }
+      (mkIf (config.nixos.oci-containers.backend == "docker") {
+        environment.persistence.${cfg.baseDirectory}.directories = [
+          "/var/lib/docker"
+        ];
+
+        programs.fuse.userAllowOther = true;
+      })
+      (mkIf (config.nixos.oci-containers.backend == "podman") {
+        environment.persistence.${cfg.baseDirectory}.directories = [
+          "/var/lib/containers"
+        ];
+      })
+    ]))
+
+    # Flatpak
+    (mkIf config.services.flatpak.enable {
+      environment.persistence.${cfg.baseDirectory}.directories = [
+        "/var/lib/flatpak"
+      ];
     })
+
+    # BTRFS filesystems
     (mkIf (cfg.fileSystem == "btrfs") {
       # Note `mkBefore` is used instead of `mkAfter` here.
-      boot.initrd.postDeviceCommands = mkBefore ''
-        mkdir --parents /mnt
-
-        # We first mount the btrfs root to /mnt
-        # so we can manipulate btrfs subvolumes.
-        mount -t ${cfg.fileSystem} -o subvol=/ /dev/disk/by-partlabel/${cfg.fileSystemPartitionLabel} /mnt
-
-        btrfs subvolume list -o /mnt/root |
-        cut -f9 -d' ' |
-        while read subvolume; do
-          echo "deleting /$subvolume subvolume..."
-          btrfs subvolume delete "/mnt/$subvolume"
-        done &&
-        echo "deleting /root subvolume..." &&
-        btrfs subvolume delete /mnt/root
-
-        btrfs subvolume snapshot /mnt/root-blank /mnt/root
-
-        umount /mnt
-      '';
+      boot.initrd = {
+        supportedFilesystems = [ "btrfs" ];
+        postDeviceCommands = mkIf (!phase1Systemd) (mkBefore btrfsWipeScript);
+        systemd.services.restore-root = lib.mkIf phase1Systemd {
+          description = "Rollback btrfs rootfs";
+          wantedBy = [ "initrd.target" ];
+          requires = [
+            "dev-disk-by\\x2dpartlabel-${cfg.fileSystemPartitionLabel}.device"
+          ];
+          after = [
+            "dev-disk-by\\x2dpartlabel-${cfg.fileSystemPartitionLabel}.device"
+            "systemd-cryptsetup@${cfg.fileSystemPartitionLabel}.service"
+          ];
+          before = [ "sysroot.mount" ];
+          unitConfig.DefaultDependencies = "no";
+          serviceConfig.Type = "oneshot";
+          script = btrfsWipeScript;
+        };
+      };
     })
   ]);
 }
