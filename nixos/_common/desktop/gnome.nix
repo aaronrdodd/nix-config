@@ -38,7 +38,7 @@
     blackbox-terminal
     clapper
     evince
-    firefox
+    firefox-esr
     gnome.gnome-system-monitor
     gnome.gnome-tweaks
     gnome.nautilus
