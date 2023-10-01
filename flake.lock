@@ -157,6 +157,21 @@
         "type": "gitlab"
       }
     },
+    "nur": {
+      "locked": {
+        "lastModified": 1696184940,
+        "narHash": "sha256-WrkEE+oh/+6nGG7gsNJh+enrut2klzgP615EnibPeJU=",
+        "owner": "nix-community",
+        "repo": "nur",
+        "rev": "c07f2e785ad9158ca78a3413371bea2a920b1f7a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nur",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "disko": "disko",
@@ -166,6 +181,7 @@
         "nixpkgs": "nixpkgs",
         "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "nur": "nur",
         "sops-nix": "sops-nix"
       }
     },

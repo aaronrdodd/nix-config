@@ -43,6 +43,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nixpkgs-stable.follows = "nixpkgs";
     };
+
+    # Nix User Repository
+    nur = {
+      url = "github:nix-community/nur";
+    };
   };
 
   outputs =
