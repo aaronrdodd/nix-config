@@ -10,19 +10,33 @@ in
         smartCardSupport = true;
       };
       extraPolicies = {
+        DisableFirefoxAccounts = true;
         DisableFirefoxStudies = true;
+        DisableFormHistory = true;
         DisablePocket = true;
         DisableTelemetry = true;
-        DisableFirefoxAccounts = true;
+        EnableTrackingProtection = {
+          Cryptomining = true;
+          Fingerprinting = true;
+          Value = true;
+        };
+        EncryptedMediaExtensions = {
+          Enabled = true;
+        };
         FirefoxHome = {
           Pocket = false;
+          Search = false;
           Snippets = false;
         };
+        NoDefaultBookmarks = true;
         OfferToSaveLogins = false;
+        PasswordManagerEnabled = false;
+        SearchSuggestEnabled = false;
         UserMessaging = {
-          SkipOnboarding = true;
           ExtensionRecommendations = false;
           MoreFromMozilla = false;
+          SkipOnboarding = true;
+          WhatsNew = false;
         };
       };
     };
@@ -32,6 +46,7 @@ in
         bookmarks = { };
         extensions = with firefox-addons; [
           header-editor
+          keepassxc-browser
           multi-account-containers
           redirector
           skip-redirect
