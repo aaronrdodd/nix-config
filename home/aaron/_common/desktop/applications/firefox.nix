@@ -90,6 +90,13 @@ in
               icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
               definedAliases = [ "@np" ];
             };
+
+            "Amazon.co.uk".metaData.hidden = true;
+            "Amazon.com".metaData.hidden = true;
+            "Bing".metaData.hidden = true;
+            "Google".metaData.hidden = true;
+            "Wikipedia (en)".metaData.hidden = true;
+            "eBay".metaData.hidden = true;
           };
           force = true;
         };
