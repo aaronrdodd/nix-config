@@ -52,6 +52,47 @@ in
           skip-redirect
           ublock-origin
         ];
+        search = {
+          engines = {
+            "Nix options" = {
+              urls = [{
+                template = "https://search.nixos.org/options";
+                params = [
+                  {
+                    name = "type";
+                    value = "options";
+                  }
+                  {
+                    name = "query";
+                    value = "{searchTerms}";
+                  }
+                ];
+              }];
+
+              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+              definedAliases = [ "@no" ];
+            };
+            "Nix packages" = {
+              urls = [{
+                template = "https://search.nixos.org/packages";
+                params = [
+                  {
+                    name = "type";
+                    value = "packages";
+                  }
+                  {
+                    name = "query";
+                    value = "{searchTerms}";
+                  }
+                ];
+              }];
+
+              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+              definedAliases = [ "@np" ];
+            };
+          };
+          force = true;
+        };
         settings = {
           "browser.newtabpage.activity-stream.showSponsored" = false;
           "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
