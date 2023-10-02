@@ -78,6 +78,10 @@ in
           "app.normandy.enabled" = false;
           "app.normandy.api_url" = "";
 
+          "breakpad.reportURL" = "";
+          "browser.tabs.crashReporting.sendReport" = false;
+          "browser.crashReports.unsubmittedCheck.autoSubmit2" = false;
+
           "dom.security.https_only_mode" = true;
           "privacy.trackingprotection.enabled" = true;
         };
