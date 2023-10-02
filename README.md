@@ -1,6 +1,6 @@
 # Aaron's [NixOS] and [Home Manager] configurations
 
-[![built with nix](https://img.shields.io/static/v1?logo=NixOS&label=&message=Built%20with%20Nix&style=for-the-badge)](https://builtwithnix.org)
+[![built with nix](https://img.shields.io/static/v1?logo=NixOS&logoColor=white&color=blue&label=&message=Built%20with%20Nix&style=for-the-badge)](https://builtwithnix.org)
 [![flake-checker](https://img.shields.io/github/actions/workflow/status/aaron-dodd/nix-config/flake-checker.yml?label=flake%20checker&style=for-the-badge)](https://github.com/aaron-dodd/nix-config/actions/workflows/flake-checker.yml)
 [![nix-checker](https://img.shields.io/github/actions/workflow/status/aaron-dodd/nix-config/nix-checker.yml?label=nix%20checker&style=for-the-badge)](https://github.com/aaron-dodd/nix-config/actions/workflows/nix-checker.yml)
 [![script-checker](https://img.shields.io/github/actions/workflow/status/aaron-dodd/nix-config/script-checker.yml?label=script%20checker&style=for-the-badge)](https://github.com/aaron-dodd/nix-config/actions/workflows/script-checker.yml)
