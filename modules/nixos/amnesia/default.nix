@@ -13,10 +13,8 @@ let
 
       btrfs subvolume list -o "$MNTPOINT/root" | cut -f9 -d ' ' |
       while read -r subvolume; do
-        echo "deleting /$subvolume subvolume..."
         btrfs subvolume delete "$MNTPOINT/$subvolume"
       done &&
-      echo "deleting /root subvolume..." &&
       btrfs subvolume delete "$MNTPOINT/root"
 
       btrfs subvolume snapshot "$MNTPOINT/root-blank" "$MNTPOINT/root"
