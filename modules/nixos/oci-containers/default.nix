@@ -171,7 +171,7 @@ in
     };
     backend = mkOption {
       type = types.enum [ "docker" "podman" ];
-      default = "docker";
+      default = "podman";
     };
     containers = mkOption {
       type = types.attrsOf (types.submodule ({ name, ... }: {
