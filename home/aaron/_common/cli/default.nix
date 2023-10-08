@@ -3,7 +3,9 @@
     ./direnv.nix
     ./exa.nix
     ./fish.nix
+    ./gpg.nix
     ./nix-index.nix
+    ./ssh.nix
     ./starship.nix
   ];
 
