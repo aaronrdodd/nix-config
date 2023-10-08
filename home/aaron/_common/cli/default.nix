@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   imports = [
     ./direnv.nix
+    ./exa.nix
     ./fish.nix
     ./nix-index.nix
     ./starship.nix
