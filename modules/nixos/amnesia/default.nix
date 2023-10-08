@@ -69,7 +69,6 @@ in
         # Folders you want to map
         directories = [
           "/etc/NetworkManager/system-connections"
-          "/var/lib/tailscale"
           "/var/log"
         ];
 
@@ -141,6 +140,13 @@ in
     (mkIf config.services.flatpak.enable {
       environment.persistence.${cfg.baseDirectory}.directories = [
         "/var/lib/flatpak"
+      ];
+    })
+
+    # Tailscale
+    (mkIf config.services.tailscale.enable {
+      environment.persistence.${cfg.baseDirectory}.directories = [
+        "/var/lib/tailscale"
       ];
     })
 
