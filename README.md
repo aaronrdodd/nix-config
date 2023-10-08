@@ -38,7 +38,8 @@ Currently this configuration manages the following computers:
 [scripts]: ./scripts
 [templates]: ./templates
 
-## Installation
+## How to's
+### How to install
 
 - Download a [installation ISO](https://nixos.org/download) for NixOS.
 - Put the ISO on a USB drive.
@@ -62,7 +63,7 @@ where `<hostname>` is the name of the machine you want to install, and
 The automated installation will wipe all data on the disks and will need to be
 `reboot`ed once it finishes.
 
-## Making changes
+### How to make changes
 
 - Clone the repository to your home directory using Git if you don't have it
   already:
@@ -90,7 +91,7 @@ sudo nixos-rebuild switch --flake ~/nix-config
 You can use `boot` instead of `switch` to enter the new configuration on
 reboot.
 
-## Adding a new computer
+### How to add a new computer
 
 - Make sure you are within the nix-config git repository.
 
@@ -167,7 +168,7 @@ sudo nixos-rebuild dry-activate --flake .#hostname
 - Update `README.md` with information about the computer.
 - Commit and push changes.
 
-## Setting up SSH access
+### How to set up SSH access
 
 - Generate an ed25519 SSH key:
 
@@ -186,4 +187,28 @@ ssh-keygen -t ed25519
 [`allowed_signers`]: https://git-scm.com/docs/git-config#Documentation/git-config.txt-gpgsshallowedSignersFile
 [GitHub SSH Configuration]: https://github.com/settings/keys
 [nixos user configuration]: ./nixos/_common/users
+
+## How to set up GPG
+
+It is recommended to follow these steps on an airgapped trusted machine.
+
+- Generate a master key with only `Certify` as an allowed action:
+
+```bash
+gpg --expert --full-generate-key
+```
+
+- Use ECC 25519.
+- Set the expiry to never expire.
+- Enter your name, email, and passphrase as prompted.
+- Generate subkeys for `Sign`, `Authenticate`, and `Encrypt`:
+
+```bash
+gpg --expert --edit-key <email>
+
+gpg> addkey
+gpg> save
+```
+
+- NOTE: It is recommended to set signing key expiry to a short timeframe.
 
