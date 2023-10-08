@@ -48,6 +48,12 @@
     nur = {
       url = "github:nix-community/nur";
     };
+
+    # ls replacement
+    eza = {
+      url = "github:eza-community/eza";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

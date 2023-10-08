@@ -9,10 +9,16 @@
   # This one contains whatever you want to overlay
   # You can change versions, add patches, set compilation flags, anything really.
   # https://nixos.wiki/wiki/Overlays
-  modifications = _final: _prev: {
+  modifications = final: _prev: {
     # example = prev.example.overrideAttrs (oldAttrs: rec {
     # ...
     # });
+
+    exa = inputs.eza.packages.${final.system}.default.overrideAttrs (oldAttrs: {
+      postInstall = oldAttrs.postInstall + ''
+        ln -sv $out/bin/eza $out/bin/exa
+      '';
+    });
   };
 
   # When applied, the unstable nixpkgs set (declared in the flake inputs) will
