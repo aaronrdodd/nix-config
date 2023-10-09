@@ -2,6 +2,7 @@
   imports = [
     ./auto-upgrade.nix
     ./disko.nix
+    ./gpg.nix
     ./home-manager.nix
     ./nix-settings.nix
     ./openssh.nix
