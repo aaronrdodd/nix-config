@@ -9,10 +9,12 @@
           type = "gpt";
           partitions = {
             boot = {
+              priority = 1;
               size = "1M";
               type = "EF02"; # for grub MBR
             };
             ESP = {
+              priority = 2;
               name = "ESP";
               start = "1M";
               end = "512MiB";
@@ -24,6 +26,7 @@
               };
             };
             root = {
+              priority = 3;
               size = "100%";
               content = {
                 type = "btrfs";
