@@ -28,7 +28,7 @@ in
     "org/gnome/shell" = {
       favorite-apps = [
         "firefox.desktop"
-        "com.github.rafostar.Clapper.desktop"
+        "vlc.desktop"
         "io.bassi.Amberol.desktop"
         "com.raggesilver.BlackBox.desktop"
         "org.gnome.Nautilus.desktop"
