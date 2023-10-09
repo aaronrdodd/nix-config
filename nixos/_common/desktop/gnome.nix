@@ -36,14 +36,19 @@
   environment.systemPackages = with pkgs; [
     amberol
     blackbox-terminal
-    clapper
     evince
     firefox-esr
     gnome.gnome-system-monitor
     gnome.gnome-tweaks
     gnome.nautilus
     gradience
+    vlc
   ] ++ (if config.services.flatpak.enable then [ gnome.gnome-software ] else [ ]);
+
+  programs = {
+    gnome-disks.enable = true;
+    seahorse.enable = true;
+  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
