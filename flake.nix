@@ -139,6 +139,12 @@
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations = {
+        aetherius = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [
+            ./nixos/aetherius
+          ];
+        };
         vmware = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           modules = [
@@ -150,6 +156,13 @@
       # Standalone home-manager configuration entrypoint
       # Available through 'home-manager --flake .#your-username@your-hostname'
       homeConfigurations = {
+        "aaron@aetherius" = home-manager.lib.homeManagerConfiguration {
+          modules = [
+            ./home/aaron/aetherius.nix
+          ];
+          extraSpecialArgs = { inherit inputs outputs; };
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        };
         "aaron@vmware" = home-manager.lib.homeManagerConfiguration {
           modules = [
             ./home/aaron/vmware.nix

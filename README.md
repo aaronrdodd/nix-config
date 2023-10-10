@@ -13,9 +13,10 @@ configuring my computers and home environment.
 
 Currently this configuration manages the following computers:
 
-|    Hostname    |       OEM      |        Model        |       OS      |     Role     |  Status  |
-| :------------: | :------------: | :-----------------: | :-----------: | :----------: | :------- |
-| `vmware`       | VM             | -                   | NixOS         | Desktop      | WIP      |
+|    Hostname    |       OEM       |        Model        |       OS      |     Role     |  Status  |
+| :------------: | :------------:  | :-----------------: | :-----------: | :----------: | :------- |
+| `aetherius`    | Hewlett-Packard | AMD                 | NixOS         | Desktop      | WIP      |
+| `vmware`       | VMware          | -                   | NixOS         | Desktop      | WIP      |
 
 ## Structure
 
