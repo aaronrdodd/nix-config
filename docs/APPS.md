@@ -3,6 +3,21 @@
 The following in a non-exhaustive list of software which I use across
 different devices.
 
+## Desktop
+
+I try to be OS agnostic as much as possible on the desktop.
+
+ - Anki
+ - Bitwarden
+ - Firefox
+ - KeepassXC
+ - LibreOffice
+ - ProtonMail Bridge
+ - Signal Desktop
+ - Syncthing
+ - Tailscale
+ - Thunderbird
+
 ## SmartPhone
 
 My smartphone OS of choice is Android. Most of these apps are available on the
