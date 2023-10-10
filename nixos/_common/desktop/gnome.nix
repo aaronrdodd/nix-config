@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, ... }: {
   hardware = {
     opengl = {
       enable = true;
@@ -31,7 +31,7 @@
   ];
 
   services.gnome.core-utilities.enable = false;
-  services.gnome.gnome-keyring.enable = lib.mkForce false;
+  services.gnome.gnome-keyring.enable = true;
 
   # Add desktop packages
   environment.systemPackages = with pkgs; [
@@ -48,9 +48,7 @@
 
   programs = {
     gnome-disks.enable = true;
-
-    ssh.enableAskPassword = lib.mkForce true;
-    ssh.askPassword = lib.mkForce "${pkgs.gnome.seahorse}/libexec/seahorse/ssh-askpass";
+    seahorse.enable = true;
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
