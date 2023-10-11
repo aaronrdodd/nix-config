@@ -9,14 +9,18 @@ I try to be OS agnostic as much as possible on the desktop.
 
  - Anki
  - Bitwarden
+ - Chromium / Edge / Vivaldi
+ - Docker
  - Firefox
+ - GitKraken
+ - Jetbrains Toolbox
  - KeepassXC
  - LibreOffice
- - ProtonMail Bridge
+ - Podman
  - Signal Desktop
  - Syncthing
  - Tailscale
- - Thunderbird
+ - Visual Studio Code
 
 ## SmartPhone
 
