@@ -16,8 +16,7 @@
             ESP = {
               priority = 2;
               name = "ESP";
-              start = "1M";
-              end = "512MiB";
+              size = "512M";
               type = "EF00";
               content = {
                 type = "filesystem";
