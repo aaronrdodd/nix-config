@@ -7,6 +7,7 @@
     ./nix-settings.nix
     ./openssh.nix
     ./security.nix
+    ./systemd-initrd.nix
   ] ++ (builtins.attrValues outputs.nixosModules);
 
   environment = {
