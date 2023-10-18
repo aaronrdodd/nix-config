@@ -27,7 +27,8 @@ in
     ../_common/users/aaron
   ];
 
-  networking.hostName = hostName; # Define your hostname.
+  # Define your hostname.
+  networking.hostName = hostName;
 
   # Enable networking
   networking.networkmanager.enable = true;

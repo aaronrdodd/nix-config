@@ -27,13 +27,21 @@ in
     ../_common/users/aaron
   ];
 
-  networking.hostName = hostName; # Define your hostname.
+  # Define your hostname.
+  networking.hostName = hostName;
 
   # Enable networking
   networking.networkmanager.enable = true;
 
   # Enable guest additions
   virtualisation.vmware.guest.enable = true;
+
+  # Enable amnesia
+  nixos.amnesia = {
+    enable = true;
+    fileSystem = "btrfs";
+    fileSystemPartitionLabel = "disk-main-root";
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
