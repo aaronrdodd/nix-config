@@ -49,6 +49,7 @@ in
           header-editor
           keepassxc-browser
           multi-account-containers
+          plasma-integration
           redirector
           skip-redirect
           ublock-origin
@@ -152,4 +153,11 @@ in
       };
     };
   };
+
+  home.packages = with pkgs; [
+    plasma-browser-integration
+  ];
+
+  home.file.".mozilla/native-messaging-hosts/org.kde.plasma.browser_integration.json".source =
+    "${pkgs.plasma-browser-integration}/lib/mozilla/native-messaging-hosts/org.kde.plasma.browser_integration.json";
 }
