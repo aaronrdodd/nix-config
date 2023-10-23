@@ -7,11 +7,12 @@
   services.xserver.desktopManager.plasma5.enable = true;
   services.packagekit.enable = true;
 
-  # Enable dconf
-  programs.dconf.enable = true;
-
-  # Enable SSH askpass
-  programs.ssh.askPassword = lib.mkForce "${pkgs.libsForQt5.ksshaskpass.out}/bin/ksshaskpass";
+  programs = {
+    adb.enable = true;
+    dconf.enable = true;
+    kdeconnect.enable = true;
+    ssh.askPassword = lib.mkForce "${pkgs.libsForQt5.ksshaskpass.out}/bin/ksshaskpass";
+  };
 
   environment = {
     etc."chromium/native-messaging-hosts/org.kde.plasma.browser_integration.json".source =

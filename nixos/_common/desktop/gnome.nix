@@ -6,8 +6,12 @@
     };
   };
 
-  # Enable dconf
-  programs.dconf.enable = true;
+  programs = {
+    adb.enable = true;
+    dconf.enable = true;
+    gnome-disks.enable = true;
+    seahorse.enable = true;
+  };
 
   # Disable xterm
   services.xserver.excludePackages = [ pkgs.xterm ];
@@ -45,11 +49,6 @@
     gradience
     vlc
   ] ++ (if config.services.flatpak.enable then [ gnome.gnome-software ] else [ ]);
-
-  programs = {
-    gnome-disks.enable = true;
-    seahorse.enable = true;
-  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
