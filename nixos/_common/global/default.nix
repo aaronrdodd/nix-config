@@ -1,7 +1,6 @@
 { outputs, pkgs, ... }: {
   imports = [
     ./auto-upgrade.nix
-    ./clamav.nix
     ./disko.nix
     ./gpg.nix
     ./home-manager.nix

@@ -15,6 +15,7 @@ in
     ../_common/global
     ../_common/desktop/plasma.nix
     ../_common/services/amnesia.nix
+    ../_common/services/antivirus.nix
     ../_common/services/dns-security.nix
     ../_common/services/flatpak.nix
     ../_common/services/localisation.nix
