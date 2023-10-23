@@ -3,6 +3,8 @@ with lib;
 let
   cfg = config.nixos.amnesia;
 
+  plasmaEnabled = config.services.xserver.desktopManager.plasma5.enable;
+
   btrfsWipeScript = ''
     mkdir --parents /tmp
     MNTPOINT=$(mktemp -d)
@@ -152,6 +154,13 @@ in
     (mkIf config.services.tailscale.enable {
       environment.persistence.${cfg.baseDirectory}.directories = [
         "/var/lib/tailscale"
+      ];
+    })
+
+    # Plasma
+    (mkIf plasmaEnabled {
+      environment.persistence.${cfg.baseDirectory}.directories = [
+        "/var/lib/sddm"
       ];
     })
 
