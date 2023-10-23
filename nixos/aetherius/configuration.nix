@@ -13,7 +13,7 @@ in
     (import ../_common/services/grub-bootloader.nix { devices = [ disk ]; })
 
     ../_common/global
-    ../_common/desktop/gnome.nix
+    ../_common/desktop/plasma.nix
     ../_common/services/amnesia.nix
     ../_common/services/dns-security.nix
     ../_common/services/flatpak.nix
