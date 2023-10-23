@@ -40,7 +40,6 @@ in
   nixos.amnesia = {
     enable = true;
     fileSystem = "btrfs";
-    fileSystemPartitionLabel = "disk-main-root";
   };
 
   # This value determines the NixOS release from which the default
