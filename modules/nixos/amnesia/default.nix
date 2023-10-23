@@ -3,6 +3,7 @@ with lib;
 let
   cfg = config.nixos.amnesia;
 
+  clamavEnabled = config.services.clamav.daemon.enable;
   plasmaEnabled = config.services.xserver.desktopManager.plasma5.enable;
 
   btrfsWipeScript = ''
@@ -161,6 +162,13 @@ in
     (mkIf plasmaEnabled {
       environment.persistence.${cfg.baseDirectory}.directories = [
         "/var/lib/sddm"
+      ];
+    })
+
+    # Clamav
+    (mkIf clamavEnabled {
+      environment.persistence.${cfg.baseDirectory}.directories = [
+        "/var/lib/clamav"
       ];
     })
 
