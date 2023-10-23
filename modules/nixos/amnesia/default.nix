@@ -53,6 +53,11 @@ in
       type = types.str;
       default = "disk-main-root";
     };
+    fileSystemDeviceLabel = mkOption {
+      type = types.str;
+      description = "Should be equivalent to '${cfg.fileSystemPartitionLabel}'. Replace any '-' with '\\x2d' for systemd escaping.";
+      default = "disk\\x2dmain\\x2droot";
+    };
   };
 
   config = mkIf cfg.enable (mkMerge [
@@ -160,11 +165,11 @@ in
           description = "Rollback btrfs rootfs";
           wantedBy = [ "initrd.target" ];
           requires = [
-            "dev-disk-by\\x2dpartlabel-${cfg.fileSystemPartitionLabel}.device"
+            "dev-disk-by\\x2dpartlabel-${cfg.fileSystemDeviceLabel}.device"
           ];
           after = [
-            "dev-disk-by\\x2dpartlabel-${cfg.fileSystemPartitionLabel}.device"
-            "systemd-cryptsetup@${cfg.fileSystemPartitionLabel}.service"
+            "dev-disk-by\\x2dpartlabel-${cfg.fileSystemDeviceLabel}.device"
+            "systemd-cryptsetup@${cfg.fileSystemDeviceLabel}.service"
           ];
           before = [ "sysroot.mount" ];
           unitConfig.DefaultDependencies = "no";
