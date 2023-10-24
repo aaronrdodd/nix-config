@@ -19,7 +19,6 @@
 
   xdg.portal = {
     enable = true;
-    xdgOpenUsePortal = true;
   };
 
   # Enable the X11 windowing system.
