@@ -49,8 +49,5 @@
     gradience
     vlc
   ] ++ (if config.services.flatpak.enable then [ gnome.gnome-software ] else [ ]);
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
 }
 
