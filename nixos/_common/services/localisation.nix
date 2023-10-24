@@ -1,5 +1,6 @@
 {
   # Set your time zone.
+  services.timesyncd.enable = true;
   time.timeZone = "Europe/London";
 
   # Select internationalisation properties.
