@@ -156,4 +156,11 @@ in
 
   home.file.".mozilla/native-messaging-hosts/org.kde.plasma.browser_integration.json".source =
     "${pkgs.plasma-browser-integration}/lib/mozilla/native-messaging-hosts/org.kde.plasma.browser_integration.json";
+
+  xdg.mimeApps.defaultApplications = {
+    "text/html" = [ "firefox.desktop" ];
+    "text/xml" = [ "firefox.desktop" ];
+    "x-scheme-handler/http" = [ "firefox.desktop" ];
+    "x-scheme-handler/https" = [ "firefox.desktop" ];
+  };
 }
