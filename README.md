@@ -28,6 +28,7 @@ Currently this configuration manages the following computers:
 - [overlays]: NixOS package overrides.
 - [packages]: Custom NixOS package definitions.
 - [scripts]: Custom scripts.
+- [secrets]: Secret files for both NixOS and Home Manager.
 - [templates]: Custom Nix development environment definitions.
 
 [.github]: ./.github/workflows
@@ -37,6 +38,7 @@ Currently this configuration manages the following computers:
 [overlays]: ./overlays
 [packages]: ./packages
 [scripts]: ./scripts
+[secrets]: ./secrets
 [templates]: ./templates
 
 ## How to's
