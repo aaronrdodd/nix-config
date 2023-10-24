@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   programs.chromium = {
     enable = true;
-    package = pkgs.vivaldi;
+    package = pkgs.chromium;
     extensions = [
       { id = "nngceckbapebfimnlniiiahkandclblb"; } # bitwarden
       { id = "oboonakemofpalcgghocfoadofidjkkk"; } # keepassxc-browser
