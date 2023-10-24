@@ -33,6 +33,7 @@ in
       git
       home-manager
       keepassxc
+      sops
       tor-browser-bundle-bin
       vim
     ];
