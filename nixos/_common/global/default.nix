@@ -6,6 +6,7 @@
     ./home-manager.nix
     ./nix-settings.nix
     ./openssh.nix
+    ./secrets.nix
     ./security.nix
     ./systemd-initrd.nix
   ] ++ (builtins.attrValues outputs.nixosModules);

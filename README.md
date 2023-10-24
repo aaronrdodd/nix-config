@@ -39,7 +39,8 @@ Currently this configuration manages the following computers:
 [scripts]: ./scripts
 [templates]: ./templates
 
-## Installation
+## How to's
+### How to install the system
 
 - Download a [installation ISO](https://nixos.org/download) for NixOS.
 - Put the ISO on a USB drive.
@@ -63,7 +64,7 @@ where `<hostname>` is the name of the machine you want to install, and
 The automated installation will wipe all data on the disks and will need to be
 `reboot`ed once it finishes.
 
-## Making changes
+### How to make changes
 
 - Clone the repository to your home directory using Git if you don't have it
   already:
@@ -91,7 +92,7 @@ sudo nixos-rebuild switch --flake ~/nix-config
 You can use `boot` instead of `switch` to enter the new configuration on
 reboot.
 
-## Adding a new computer
+### How to add a new computer
 
 - Make sure you are within the nix-config git repository.
 
@@ -168,7 +169,7 @@ sudo nixos-rebuild dry-activate --flake .#hostname
 - Update `README.md` with information about the computer.
 - Commit and push changes.
 
-## Setting up SSH access
+### How to set up SSH access
 
 - Generate an ed25519 SSH key:
 
@@ -188,3 +189,48 @@ ssh-keygen -t ed25519
 [GitHub SSH Configuration]: https://github.com/settings/keys
 [nixos user configuration]: ./nixos/_common/users
 
+### How to set up secrets
+
+Secrets are managed using [mic92/sops-nix].
+
+A bootstrap age key can be created with the following commands:
+
+```bash
+mkdir -p ~/.config/sops/age
+age-keygen -o ~/.config/sops/age/keys.txt
+```
+
+or to convert an ssh ed25519 key to an age key:
+
+```bash
+mkdir -p ~/.config/sops/age
+nix-shell -p ssh-to-age --run "ssh-to-age -private-key -i ~/.ssh/<keyfile> > ~/.config/sops/age/keys.txt"
+```
+
+The age public key should be added to the [.sops.yaml] keys:
+
+```yaml
+keys:
+  - &aaron_dodd 'age1dklej440dm807874vp2lrz7m72094s2v27autrhs7u0vjpxe75csttf2e0'
+```
+
+After first boot, generate an age public key from the host SSH key:
+
+```bash
+nix-shell -p ssh-to-age --run 'ssh-keyscan localhost | ssh-to-age'
+```
+
+Add a new section with this key to [.sops.yaml]:
+
+```yaml
+creation_rules:
+  ...
+  - path_regex: nixos/<hostname>/secrets(/[^/]+)?\.yaml$
+    key_groups:
+      - age:
+          - *aaron-dodd
+          - '<key>'
+```
+
+[mic92/sops-nix]: https://github.com/mic92/sops-nix
+[.sops.yaml]: ./.sops.yaml

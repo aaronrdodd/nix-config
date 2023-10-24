@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ config, pkgs, ... }:
 let
   inherit (config.networking) hostName;
 
@@ -6,6 +6,10 @@ let
   ifGroupsExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
 in
 {
+  sops.secrets."users/aaron/password" = {
+    neededForUsers = true;
+  };
+
   users.users.${userName} = {
     description = "Aaron Dodd";
     isNormalUser = true;
@@ -21,7 +25,7 @@ in
       "podman"
     ];
 
-    initialPassword = "hunter2";
+    initialPassword = config.sops.secrets."users/aaron/password".path;
     packages = with pkgs; [
       bitwarden
       bitwarden-cli
