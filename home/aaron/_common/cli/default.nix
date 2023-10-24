@@ -1,5 +1,6 @@
 { pkgs, ... }: {
   imports = [
+    ./bat.nix
     ./direnv.nix
     ./exa.nix
     ./fish.nix
