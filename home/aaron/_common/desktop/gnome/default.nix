@@ -27,11 +27,11 @@ in
 
     "org/gnome/shell" = {
       favorite-apps = [
-        "firefox.desktop"
-        "vlc.desktop"
-        "io.bassi.Amberol.desktop"
         "com.raggesilver.BlackBox.desktop"
         "org.gnome.Nautilus.desktop"
+        "vivaldi-stable.desktop"
+        "firefox.desktop"
+        "vlc.desktop"
         "org.gnome.Software.desktop"
       ];
     };
