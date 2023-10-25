@@ -6,10 +6,6 @@ let
   ifGroupsExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
 in
 {
-  sops.secrets."users/aaron/password" = {
-    neededForUsers = true;
-  };
-
   users.users.${userName} = {
     description = "Aaron Dodd";
     isNormalUser = true;
@@ -25,7 +21,7 @@ in
       "podman"
     ];
 
-    initialPassword = config.sops.secrets."users/aaron/password".path;
+    initialPassword = "hunter2";
     packages = with pkgs; [
       bitwarden
       bitwarden-cli
