@@ -32,10 +32,10 @@
                 extraArgs = [ "-f" ]; # Override existing partition
                 postCreateHook = ''
                   MNTPOINT=$(mktemp -d)
-                  trap 'umount $MNTPOINT/root; umount $MNTPOINT; rm -rf $MNTPOINT' EXIT
+                  trap 'umount "$MNTPOINT/root"; umount "$MNTPOINT"; rm -rf "$MNTPOINT"' EXIT
 
-                  mount /dev/disk/by-partlabel/disk-main-root $MNTPOINT -o subvol=/
-                  mount /dev/disk/by-partlabel/disk-main-root $MNTPOINT/root -o subvol=/root
+                  mount /dev/disk/by-partlabel/disk-main-root "$MNTPOINT" -o subvol=/
+                  mount /dev/disk/by-partlabel/disk-main-root "$MNTPOINT/root" -o subvol=/root
                   btrfs subvolume snapshot -r "$MNTPOINT/root" "$MNTPOINT/root-blank"
                 '';
                 subvolumes = {
