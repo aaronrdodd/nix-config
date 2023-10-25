@@ -93,7 +93,7 @@ in
           {
             "${user}" = {
               initialPassword = mkForce null;
-              passwordFile = "${cfg.baseDirectory}/passwords/${user}";
+              hashedPasswordFile = "${cfg.baseDirectory}/passwords/${user}";
             };
           }
         )
