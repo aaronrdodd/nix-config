@@ -23,6 +23,7 @@ in
 
     initialPassword = "hunter2";
     packages = with pkgs; [
+      anki
       bitwarden
       bitwarden-cli
       chezmoi
