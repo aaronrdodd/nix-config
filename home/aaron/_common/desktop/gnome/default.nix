@@ -29,8 +29,8 @@ in
       favorite-apps = [
         "com.raggesilver.BlackBox.desktop"
         "org.gnome.Nautilus.desktop"
-        "chromium-browser.desktop"
         "firefox.desktop"
+        "chromium-browser.desktop"
         "vlc.desktop"
         "org.gnome.Software.desktop"
       ];
