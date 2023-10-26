@@ -2,8 +2,16 @@
   # Enable the KDE Plasma Desktop Environment.
   services.xserver = {
     enable = true;
-    displayManager.sddm.enable = true;
-    desktopManager.plasma5.enable = true;
+
+    desktopManager.plasma5 = {
+      enable = true;
+      runUsingSystemd = true;
+    };
+
+    displayManager = {
+      sddm.enable = true;
+      defaultSession = "plasmawayland";
+    };
   };
 
   services.packagekit.enable = true;
@@ -18,6 +26,10 @@
   environment = {
     etc."chromium/native-messaging-hosts/org.kde.plasma.browser_integration.json".source =
       "${pkgs.plasma-browser-integration}/etc/chromium/native-messaging-hosts/org.kde.plasma.browser_integration.json";
+
+    sessionVariables = {
+      MOZ_ENABLE_WAYLAND = "1";
+    };
 
     systemPackages = with pkgs; [
       unstable.konsave
