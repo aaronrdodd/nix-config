@@ -13,10 +13,10 @@
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
-      "text/html" = [ "firefox.desktop" ];
-      "text/xml" = [ "firefox.desktop" ];
-      "x-scheme-handler/http" = [ "firefox.desktop" ];
-      "x-scheme-handler/https" = [ "firefox.desktop" ];
+      "text/html" = [ "chromium-browser.desktop" ];
+      "text/xml" = [ "chromium-browser.desktop" ];
+      "x-scheme-handler/http" = [ "chromium-browser.desktop" ];
+      "x-scheme-handler/https" = [ "chromium-browser.desktop" ];
     };
   };
 }
