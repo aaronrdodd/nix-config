@@ -10,16 +10,20 @@ I try to be OS agnostic as much as possible on the desktop.
  - Anki
  - Bitwarden
  - Chromium / Edge / Vivaldi
+ - Discord
  - Docker
  - Firefox
  - GitKraken
  - Jetbrains Toolbox
  - KeepassXC
  - LibreOffice
+ - LocalSend
  - Podman
+ - Proton Mail Bridge
  - Signal Desktop
  - Syncthing
  - Tailscale
+ - Thunderbird
  - Visual Studio Code
 
 ## SmartPhone
@@ -29,14 +33,18 @@ Google Play store or on the F-Droid store.
 
  - Aegis Authenticator
  - AnkiDroid
+ - Discord
  - F-Droid App Store
  - Firefox
  - KeePassDX
+ - LocalSend
+ - NewPipe
  - ProtonMail Calendar
  - ProtonMail E-Mail
  - Signal
  - Simon Tatham's Puzzle Collection
  - Simple Mobile Tools (https://www.simplemobiletools.com)
+ - Stremio
  - Syncthing
  - Tachiyomi
  - Tailscale
