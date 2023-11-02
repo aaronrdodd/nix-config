@@ -14,6 +14,11 @@
       url = "github:nixos/nixpkgs";
     };
 
+    # Hardware profiles
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware";
+    };
+
     # Disk configuration and partitioning
     disko = {
       url = "github:nix-community/disko";
