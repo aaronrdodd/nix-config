@@ -85,6 +85,8 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     --mode disko \
     "nixos/$TARGET_HOST/disks.nix"
 
+  sudo nix-collect-garbage -d && nix-collect-garbage -d
+
   sudo nixos-install \
     --no-root-password --flake ".#$TARGET_HOST"
 
