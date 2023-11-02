@@ -28,50 +28,76 @@
               priority = 3;
               size = "100%";
               content = {
-                type = "btrfs";
-                extraArgs = [ "-f" ]; # Override existing partition
-                postCreateHook = ''
-                  MNTPOINT=$(mktemp -d)
-                  trap 'umount "$MNTPOINT/root"; umount "$MNTPOINT"; rm -rf "$MNTPOINT"' EXIT
-
-                  mount /dev/disk/by-partlabel/disk-main-root "$MNTPOINT" -o subvol=/
-                  mount /dev/disk/by-partlabel/disk-main-root "$MNTPOINT/root" -o subvol=/root
-                  btrfs subvolume snapshot -r "$MNTPOINT/root" "$MNTPOINT/root-blank"
-                '';
-                subvolumes = {
-                  "/root" = {
-                    mountpoint = "/";
-                  };
-                  "/home" = {
-                    mountOptions = [ "compress=zstd" ];
-                    mountpoint = "/home";
-                  };
-                  "/nix" = {
-                    mountOptions = [ "compress=zstd" "noatime" ];
-                    mountpoint = "/nix";
-                  };
-                  "/persist" = {
-                    mountOptions = [ "compress=zstd" ];
-                    mountpoint = "/persist";
-                  };
-                  "/tmp" = {
-                    mountOptions = [ "compress=zstd" "noatime" ];
-                    mountpoint = "/tmp";
-                  };
-                };
+                type = "zfs";
+                pool = "zroot";
               };
             };
           };
         };
       };
     };
-  };
+    zpool = {
+      zroot = {
+        type = "zpool";
+        rootFsOptions = {
+          "com.sun:auto-snapshot" = "false";
+          acltype = "posixacl";
+          atime = "off";
+          canmount = "on";
+          compression = "zstd";
+          dedup = "on";
+          devices = "off";
+          encryption = "aes-256-gcm";
+          keyformat = "passphrase";
+          keylocation = "prompt";
+          mountpoint = "none";
+          xattr = "sa";
+        };
 
-  services.btrfs.autoScrub = {
-    enable = true;
-    fileSystems = [
-      "/"
-    ];
+        postCreateHook = ''
+          zfs set keylocation=prompt zroot;
+        '';
+
+        datasets = {
+          "DATA" = {
+            type = "zfs_fs";
+            options.mountpoint = "none";
+          };
+          "ROOT" = {
+            type = "zfs_fs";
+            options.mountpoint = "none";
+          };
+          "DATA/home" = {
+            type = "zfs_fs";
+            mountpoint = "/home";
+            options.mountpoint = "legacy";
+          };
+          "ROOT/toplevel" = {
+            type = "zfs_fs";
+            mountpoint = "/";
+            options.mountpoint = "legacy";
+            postCreateHook = ''
+              zfs snapshot zroot/ROOT/toplevel@blank
+            '';
+          };
+          "ROOT/nix" = {
+            type = "zfs_fs";
+            mountpoint = "/nix";
+            options.mountpoint = "legacy";
+          };
+          "ROOT/persist" = {
+            type = "zfs_fs";
+            mountpoint = "/persist";
+            options.mountpoint = "legacy";
+          };
+          "ROOT/tmp" = {
+            type = "zfs_fs";
+            mountpoint = "/tmp";
+            options.mountpoint = "legacy";
+          };
+        };
+      };
+    };
   };
 }
 

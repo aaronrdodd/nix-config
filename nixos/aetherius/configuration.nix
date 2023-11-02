@@ -3,6 +3,7 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 let
   disk = "/dev/nvme0n1";
+  hostId = "f3105ab3";
   hostName = "aetherius";
 in
 {
@@ -29,17 +30,22 @@ in
     ../_common/users/aaron
   ];
 
-  # Define your hostname.
-  networking.hostName = hostName;
+  networking = {
+    # Define your hostid and hostname.
+    inherit hostId hostName;
 
-  # Enable networking
-  networking.networkmanager.enable = true;
+    # Enable networking
+    networkmanager.enable = true;
+  };
 
-  # Enable amnesia
+
+  # Enable amnesia with zfs
   nixos.amnesia = {
     enable = true;
-    fileSystem = "btrfs";
+    fileSystem = "zfs";
   };
+
+  boot.supportedFilesystems = [ "zfs" ];
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;

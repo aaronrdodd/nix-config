@@ -28,13 +28,14 @@ in
     ../_common/users/aaron
   ];
 
-  # Define your hostname and hostid.
   networking = {
+    # Define your hostname and hostid.
     inherit hostId hostName;
+
+    # Enable networking
+    networkmanager.enable = true;
   };
 
-  # Enable networking
-  networking.networkmanager.enable = true;
 
   # Enable guest additions
   virtualisation.vmware.guest.enable = true;
@@ -45,9 +46,10 @@ in
     fileSystem = "zfs";
   };
 
-  # Enable zfs for virtual machines
   boot = {
     supportedFilesystems = [ "zfs" ];
+
+    # Enable zfs for virtual machines
     zfs.devNodes = "/dev/disk/by-path";
   };
 
