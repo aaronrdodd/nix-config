@@ -40,7 +40,6 @@
 
   # Add desktop packages
   environment.systemPackages = with pkgs; [
-    amberol
     blackbox-terminal
     evince
     firefox-esr

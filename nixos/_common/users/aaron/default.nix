@@ -24,15 +24,12 @@ in
     initialPassword = "hunter2";
     packages = with pkgs; [
       anki
-      bitwarden
-      bitwarden-cli
       chezmoi
       git
       home-manager
       keepassxc
       sops
       tor-browser-bundle-bin
-      vim
     ];
 
     openssh.authorizedKeys.keys = [
