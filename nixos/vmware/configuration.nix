@@ -3,6 +3,7 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 let
   disk = "/dev/sda";
+  hostId = "deadbeef";
   hostName = "vmware";
 in
 {
@@ -27,8 +28,10 @@ in
     ../_common/users/aaron
   ];
 
-  # Define your hostname.
-  networking.hostName = hostName;
+  # Define your hostname and hostid.
+  networking = {
+    inherit hostId hostName;
+  };
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -39,7 +42,13 @@ in
   # Enable amnesia
   nixos.amnesia = {
     enable = true;
-    fileSystem = "btrfs";
+    fileSystem = "zfs";
+  };
+
+  # Enable zfs for virtual machines
+  boot = {
+    supportedFilesystems = [ "zfs" ];
+    zfs.devNodes = "/dev/disk/by-path";
   };
 
   # Enable secrets

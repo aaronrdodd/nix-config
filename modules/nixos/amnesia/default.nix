@@ -195,6 +195,15 @@ in
         };
       };
     })
+
+    # ZFS filesystems
+    (mkIf (cfg.fileSystem == "zfs") {
+      boot.initrd = {
+        supportedFilesystems = [ "zfs" ];
+        postDeviceCommands = lib.mkAfter ''
+          zfs rollback -r zroot/ROOT/toplevel@blank
+        '';
+      };
+    })
   ]);
 }
-
