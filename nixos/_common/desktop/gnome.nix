@@ -13,10 +13,6 @@
     seahorse.enable = true;
   };
 
-  xdg.portal = {
-    enable = true;
-  };
-
   # Enable the GNOME Desktop Environment and disable xterm
   services.xserver = {
     enable = true;
