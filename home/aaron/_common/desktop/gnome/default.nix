@@ -28,6 +28,12 @@ in
     };
 
     "org/gnome/shell" = {
+      enabled-extensions = [
+        "AlphabeticalAppGrid@stuarthayhurst"
+        "appindicatorsupport@rgcjonas.gmail.com"
+        "blur-my-shell@aunetx"
+      ];
+
       favorite-apps = [
         "com.raggesilver.BlackBox.desktop"
         "org.gnome.Nautilus.desktop"

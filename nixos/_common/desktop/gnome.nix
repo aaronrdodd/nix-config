@@ -44,6 +44,7 @@
     gnome.nautilus
     gnomeExtensions.alphabetical-app-grid
     gnomeExtensions.appindicator
+    gnomeExtensions.blur-my-shell
     gnomeExtensions.forge
     gradience
     vlc
