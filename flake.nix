@@ -176,5 +176,8 @@
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
         };
       };
+
+      wallpapers = import ./home/aaron/_common/wallpapers;
     };
 }
+

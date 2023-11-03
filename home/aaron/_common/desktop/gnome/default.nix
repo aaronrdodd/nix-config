@@ -1,8 +1,8 @@
-{ lib, ... }:
+{ config, lib, ... }:
 with lib.hm.gvariant;
 let
   avatar = "${../assets/face.png}";
-  wallpaper = "file://${../assets/bliss.jpg}";
+  wallpaper = "file://${config.wallpaper}";
 in
 {
   dconf.settings = {
