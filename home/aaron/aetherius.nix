@@ -9,5 +9,5 @@
     ./_common/services/syncthing.nix
   ];
 
-  wallpaper = outputs.wallpapers.ocean-sunset;
+  wallpaper = outputs.wallpapers.forest-planet-lake;
 }

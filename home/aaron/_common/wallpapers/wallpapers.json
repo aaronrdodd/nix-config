@@ -1198,6 +1198,11 @@
     "id": "tnPLR1t",
     "name": "microsoft-bliss",
     "sha256": "0fzk0mm74yg9kgy2qpwwxx6kccc2fidj7n5q4iggr0fchdm5dnri"
+  },
+  {
+    "ext": "jpeg",
+    "id": "43TYpDs",
+    "name": "forest-planet-lake",
+    "sha256": "1s6yi61hb1aqnmhsnap7wvaycbww1546dzhklgpxcrwpnx2z01bk"
   }
 ]
-
