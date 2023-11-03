@@ -2,5 +2,5 @@
 # zfs-diff.sh
 set -euo pipefail
 
-sudo zfs diff -FH zroot/ROOT/toplevel@blank zroot/ROOT/toplevel | grep -v "@" | awk '{print $3}'
+sudo zfs diff -FH zroot/ROOT/toplevel@blank zroot/ROOT/toplevel | grep -v "@" | awk '{print $3}' | sort
 
