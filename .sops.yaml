@@ -2,7 +2,7 @@ keys:
   - &users:
     - &aaron_dodd 'age1dklej440dm807874vp2lrz7m72094s2v27autrhs7u0vjpxe75csttf2e0'
   - &hosts:
-    - &aetherius 'age1ad5qyyr4j8m8feyp9g73c9rfcuctdh3mx7nmvlpqrj2nuvcuu9xqzfwy0f'
+    - &aetherius 'age1xakuvc5xsx07zrgqq02vtj488wcqf5z5966f72zjjxtv0r9jwfvqpw56yz'
 
 creation_rules:
   - path_regex: secrets/nixos/aetherius/secrets(/[^/]+)?\.ya?ml$
