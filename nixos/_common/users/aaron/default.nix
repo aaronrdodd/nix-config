@@ -26,6 +26,7 @@ in
       age
       anki
       chezmoi
+      discord
       git
       home-manager
       keepassxc
