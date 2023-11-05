@@ -56,6 +56,19 @@ in
         ];
         search = {
           engines = {
+            "Brave Search" = {
+              urls = [{
+                template = "https://search.brave.com/search";
+                params = [
+                  {
+                    name = "q";
+                    value = "{searchTerms}";
+                  }
+                ];
+              }];
+
+              definedAliases = [ "@b" ];
+            };
             "Nix options" = {
               urls = [{
                 template = "https://search.nixos.org/options";
@@ -96,10 +109,12 @@ in
             "Amazon.co.uk".metaData.hidden = true;
             "Amazon.com".metaData.hidden = true;
             "Bing".metaData.hidden = true;
+            "DuckDuckGo".metaData.hidden = true;
             "Google".metaData.hidden = true;
             "Wikipedia (en)".metaData.hidden = true;
             "eBay".metaData.hidden = true;
           };
+          default = "Brave Search";
           force = true;
         };
         settings = {
