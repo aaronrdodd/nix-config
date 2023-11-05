@@ -38,7 +38,7 @@ in
         "com.raggesilver.BlackBox.desktop"
         "org.gnome.Nautilus.desktop"
         "firefox.desktop"
-        "chromium-browser.desktop"
+        "brave-browser.desktop"
         "vlc.desktop"
         "org.gnome.Software.desktop"
       ];
