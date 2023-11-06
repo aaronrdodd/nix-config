@@ -91,9 +91,9 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     --no-root-password --flake ".#$TARGET_HOST"
 
   # Rsync nix-config to the target install and set the remote origin to SSH.
-  mkdir --parents "/mnt/home/$TARGET_USER/nix-config"
-  rsync -a --delete "$HOME/nix-config" "/mnt/home/$TARGET_USER"
-  pushd "/mnt/home/$TARGET_USER/nix-config"
+  mkdir --parents "/mnt/home/$TARGET_USER/Development/nix-config"
+  rsync -a --delete "$HOME/nix-config" "/mnt/home/$TARGET_USER/Development"
+  pushd "/mnt/home/$TARGET_USER/Development/nix-config"
   git remote set-url origin git@github.com:aaron-dodd/nix-config.git
   popd
 
