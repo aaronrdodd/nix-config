@@ -5,10 +5,10 @@
     # Pick a release channel from here
     # https://status.nixos.org
     nixpkgs = {
-      url = "github:nixos/nixpkgs/nixos-23.05";
-    };
-    nixpkgs-unstable = {
       url = "github:nixos/nixpkgs/nixos-unstable";
+    };
+    nixpkgs-stable = {
+      url = "github:nixos/nixpkgs/nixos-23.05";
     };
     nixpkgs-master = {
       url = "github:nixos/nixpkgs";
@@ -32,7 +32,7 @@
 
     # Home directory configuration
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.05";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -46,18 +46,12 @@
     sops-nix = {
       url = "github:mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nixpkgs-stable.follows = "nixpkgs";
+      inputs.nixpkgs-stable.follows = "nixpkgs-stable";
     };
 
     # Nix User Repository
     nur = {
       url = "github:nix-community/nur";
-    };
-
-    # ls replacement
-    eza = {
-      url = "github:eza-community/eza";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 

@@ -32,7 +32,7 @@
     };
 
     systemPackages = with pkgs; [
-      unstable.konsave
+      konsave
       plasma-browser-integration
     ] ++ (if config.services.flatpak.enable
     then [

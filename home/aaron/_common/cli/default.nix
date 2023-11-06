@@ -2,7 +2,7 @@
   imports = [
     ./bat.nix
     ./direnv.nix
-    ./exa.nix
+    ./eza.nix
     ./fish.nix
     ./gh.nix
     ./nix-index.nix
