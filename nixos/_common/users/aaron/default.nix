@@ -30,6 +30,7 @@ in
       git
       home-manager
       keepassxc
+      neofetch
       sops
       tor-browser-bundle-bin
     ];
