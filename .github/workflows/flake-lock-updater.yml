@@ -2,7 +2,7 @@ name: Flake Lock Updater
 
 on:
   schedule:
-    - cron: '0 12 * * 1,5'
+    - cron: '0 6 * * SAT'
   workflow_dispatch:
 
 jobs:
