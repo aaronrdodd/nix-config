@@ -22,29 +22,29 @@ pushd "$HOME/nix-config"
 if [[ -z "$TARGET_HOST" ]]; then
   echo "ERROR! $(basename "$0") requires a hostname as the first argument"
   echo "       The following hosts are available"
-  find nixos -maxdepth 2 -type f -name 'default.nix' -exec dirname {} \; | cut -d'/' -f2 | grep -v -E "iso"
+  find hosts -maxdepth 2 -type f -name 'default.nix' -exec dirname {} \; | cut -d'/' -f2 | grep -v -E "iso"
   exit 1
 fi
 
 if [[ -z "$TARGET_USER" ]]; then
   echo "ERROR! $(basename "$0") requires a username as the second argument"
   echo "       The following users are available"
-  find nixos/_common/users/ -mindepth 1 -maxdepth 1 -type d -exec basename {} \; | grep -v E "root|nixos"
+  find hosts/_common/users/ -mindepth 1 -maxdepth 1 -type d -exec basename {} \; | grep -v E "root|nixos"
   exit 1
 fi
 
-if [ ! -e "nixos/$TARGET_HOST/disks.nix" ]; then
-  echo "ERROR! $(basename "$0") could not find the required nixos/$TARGET_HOST/disks.nix"
+if [ ! -e "hosts/$TARGET_HOST/disks.nix" ]; then
+  echo "ERROR! $(basename "$0") could not find the required hosts/$TARGET_HOST/disks.nix"
   exit 1
 fi
 
 # Check if the machine we're provisioning expects a keyfile to unlock a disk.
 # If it does, generate a new key, and write to a known location.
-if grep -q "data.keyfile" "nixos/$TARGET_HOST/disks.nix"; then
+if grep -q "data.keyfile" "hosts/$TARGET_HOST/disks.nix"; then
   echo -n "$(head -c32 /dev/random | base64)" > /tmp/data.keyfile
 fi
 
-PERSISTENCE_ENABLED="grep -qE \"amnesia\.enable = true|services/amnesia\.nix\" \"nixos/$TARGET_HOST/configuration.nix\""
+PERSISTENCE_ENABLED="grep -qE \"amnesia\.enable = true|services/amnesia\.nix\" \"hosts/$TARGET_HOST/configuration.nix\""
 
 if eval "$PERSISTENCE_ENABLED"; then
   if [[ -z "$TARGET_USER_PASSWORD" ]]; then
@@ -83,7 +83,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     --no-write-lock-file \
     -- \
     --mode disko \
-    "nixos/$TARGET_HOST/disks.nix"
+    "hosts/$TARGET_HOST/disks.nix"
 
   sudo nix-collect-garbage -d && nix-collect-garbage -d
 
@@ -97,7 +97,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   git remote set-url origin git@github.com:aaron-dodd/nix-config.git
   popd
 
-  PERSISTENCE_BASE_DIRECTORY=$(grep -roh "nixos" -e 'amnesia\.baseDirectory = "/[^"]*"' | gawk -F'"' '{print $2}')
+  PERSISTENCE_BASE_DIRECTORY=$(grep -roh "hosts" -e 'amnesia\.baseDirectory = "/[^"]*"' | gawk -F'"' '{print $2}')
   if eval "$PERSISTENCE_ENABLED"; then
     if [ -z "$PERSISTENCE_BASE_DIRECTORY" ]; then
       PERSISTENCE_BASE_DIRECTORY="/persist"

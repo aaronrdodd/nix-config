@@ -51,7 +51,7 @@ in
   services.xserver.libinput.enable = true;
 
   # Enable secrets
-  sops.defaultSopsFile = ../../secrets/nixos/${hostName}/secrets.yaml;
+  sops.defaultSopsFile = ../../secrets/hosts/${hostName}/secrets.yaml;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

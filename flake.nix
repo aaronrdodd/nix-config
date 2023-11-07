@@ -141,13 +141,13 @@
         aetherius = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           modules = [
-            ./nixos/aetherius
+            ./hosts/aetherius
           ];
         };
         vmware = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           modules = [
-            ./nixos/vmware
+            ./hosts/vmware
           ];
         };
       };

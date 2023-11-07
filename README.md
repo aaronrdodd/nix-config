@@ -22,9 +22,9 @@ Currently this configuration manages the following computers:
 
 - [.github]: GitHub CI/CD workflows.
 - [home]: Home Manager configurations.
+- [hosts](./hosts): NixOS machine configurations.
 - [modules/home-manager]: Reusable Home Manager modules.
 - [modules/nixos]: Reusable NixOS modules.
-- [nixos](./nixos): NixOS machine configurations.
 - [overlays]: NixOS package overrides.
 - [packages]: Custom NixOS package definitions.
 - [scripts]: Custom scripts.
@@ -106,13 +106,13 @@ cd ~/nix-config
   computer.
 
 ```bash
-sudo nixos-generate-config --no-filesystems --dir nixos/hostname
+sudo nixos-generate-config --no-filesystems --dir hosts/hostname
 ```
 
 - Add a `default.nix` to source the configuration files from:
 
 ```bash
-touch nixos/hostname/default.nix
+touch hosts/hostname/default.nix
 ```
 
 `default.nix` should look like this:
@@ -152,7 +152,7 @@ nixosConfigurations = {
   hostname = nixpkgs.lib.nixosSystem {
     specialArgs = { inherit inputs outputs; };
     modules = [
-      ./nixos/hostname
+      ./hosts/hostname
     ];
   };
 };
@@ -185,11 +185,11 @@ ssh-keygen -t ed25519
   to the [GitHub SSH Configuration] as a *Signing key*, and also add it to
   the [`allowed_signers`] file.
 - **If the host should be able to connect to other machines**: add the public
-  key to `openssh.authorizedKeys.keys` to the [nixos user configuration].
+  key to `openssh.authorizedKeys.keys` to the [hosts user configuration].
 
 [`allowed_signers`]: https://git-scm.com/docs/git-config#Documentation/git-config.txt-gpgsshallowedSignersFile
 [GitHub SSH Configuration]: https://github.com/settings/keys
-[nixos user configuration]: ./nixos/_common/users
+[hosts user configuration]: ./hosts/_common/users
 
 ### How to set up secrets
 
@@ -227,7 +227,7 @@ Add a new section with this key to [.sops.yaml]:
 ```yaml
 creation_rules:
   ...
-  - path_regex: nixos/<hostname>/secrets(/[^/]+)?\.yaml$
+  - path_regex: hosts/<hostname>/secrets(/[^/]+)?\.yaml$
     key_groups:
       - age:
           - *aaron-dodd
