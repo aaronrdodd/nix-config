@@ -5,7 +5,7 @@
 set -euo pipefail
 
 TARGET_OPTION="${1:-}"
-TARGET_ENVIRONMENT="${2:-nixos}"
+TARGET_ENVIRONMENT="${2:-hosts}"
 TARGET_MACHINE="${3:-$(hostname)}"
 
 if [[ "$TARGET_OPTION" == "updatekeys" ]]; then

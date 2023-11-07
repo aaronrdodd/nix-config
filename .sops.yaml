@@ -5,13 +5,13 @@ keys:
     - &aetherius 'age1xakuvc5xsx07zrgqq02vtj488wcqf5z5966f72zjjxtv0r9jwfvqpw56yz'
 
 creation_rules:
-  - path_regex: secrets/nixos/aetherius/secrets(/[^/]+)?\.ya?ml$
+  - path_regex: secrets/hosts/aetherius/secrets(/[^/]+)?\.ya?ml$
     key_groups:
       - age:
         - *aaron_dodd
         - *aetherius
 
-  - path_regex: secrets/nixos/vmware/secrets(/[^/]+)?\.ya?ml$
+  - path_regex: secrets/hosts/vmware/secrets(/[^/]+)?\.ya?ml$
     key_groups:
       - age:
         - *aaron_dodd
