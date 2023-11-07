@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   programs.chromium = {
     enable = true;
-    package = pkgs.brave;
+    package = pkgs.vivaldi;
     extensions = [
       { id = "nngceckbapebfimnlniiiahkandclblb"; } # bitwarden
       { id = "oboonakemofpalcgghocfoadofidjkkk"; } # keepassxc-browser
@@ -13,10 +13,10 @@
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
-      "text/html" = [ "brave-browser.desktop" ];
-      "text/xml" = [ "brave-browser.desktop" ];
-      "x-scheme-handler/http" = [ "brave-browser.desktop" ];
-      "x-scheme-handler/https" = [ "brave-browser.desktop" ];
+      "text/html" = [ "vivaldi-stable.desktop" ];
+      "text/xml" = [ "vivaldi-stable.desktop" ];
+      "x-scheme-handler/http" = [ "vivaldi-stable.desktop" ];
+      "x-scheme-handler/https" = [ "vivaldi-stable.desktop" ];
     };
   };
 }

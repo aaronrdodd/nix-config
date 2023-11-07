@@ -42,7 +42,7 @@ in
         "com.raggesilver.BlackBox.desktop"
         "org.gnome.Nautilus.desktop"
         "firefox.desktop"
-        "brave-browser.desktop"
+        "vivaldi-stable.desktop"
         "vlc.desktop"
         "org.gnome.Software.desktop"
       ];
