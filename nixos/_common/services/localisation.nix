@@ -1,6 +1,6 @@
-{
+{ lib, ... }: {
   # Set your time zone.
-  services.timesyncd.enable = true;
+  services.timesyncd.enable = lib.mkDefault true;
   time.timeZone = "Europe/London";
 
   # Select internationalisation properties.
