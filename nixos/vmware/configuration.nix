@@ -1,6 +1,7 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
+{ lib, ... }:
 let
   disk = "/dev/sda";
   hostId = "deadbeef";
@@ -50,7 +51,7 @@ in
     supportedFilesystems = [ "zfs" ];
 
     # Enable zfs for virtual machines
-    zfs.devNodes = "/dev/disk/by-path";
+    zfs.devNodes = lib.mkDefault "/dev/disk/by-path";
   };
 
   # Enable secrets
