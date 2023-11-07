@@ -6,6 +6,7 @@
     ./fish.nix
     ./gh.nix
     ./nix-index.nix
+    ./productivity.nix
     ./starship.nix
   ];
 
@@ -21,7 +22,6 @@
     httpie # Better curl
     diffsitter # Better diff
     jq # JSON pretty printer and manipulator
-    timer # To help with productivity
 
     nix-inspect # Inspect the path when in a nix environment
 
