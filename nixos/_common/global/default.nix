@@ -8,6 +8,7 @@
     ./openssh.nix
     ./secrets.nix
     ./security.nix
+    ./temp-files.nix
     ./zram-swap.nix
   ] ++ (builtins.attrValues outputs.nixosModules);
 
