@@ -47,16 +47,9 @@
           compression = "zstd";
           dedup = "on";
           devices = "off";
-          encryption = "aes-256-gcm";
-          keyformat = "passphrase";
-          keylocation = "prompt";
           mountpoint = "none";
           xattr = "sa";
         };
-
-        postCreateHook = ''
-          zfs set keylocation=prompt zroot;
-        '';
 
         datasets = {
           "DATA" = {
