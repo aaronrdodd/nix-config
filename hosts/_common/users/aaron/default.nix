@@ -25,6 +25,7 @@ in
     packages = with pkgs; [
       age
       anki
+      bitwarden
       chezmoi
       discord
       git
