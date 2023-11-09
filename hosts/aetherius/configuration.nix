@@ -17,6 +17,7 @@ in
     ../_common/desktop/gnome.nix
     ../_common/services/amnesia.nix
     ../_common/services/antivirus.nix
+    ../_common/services/avahi.nix
     ../_common/services/bluetooth.nix
     ../_common/services/dns-security.nix
     ../_common/services/flatpak.nix
