@@ -7,24 +7,23 @@
     ./gh.nix
     ./nix-index.nix
     ./productivity.nix
+    ./skim.nix
     ./starship.nix
   ];
 
   home.packages = with pkgs; [
-    comma # Install and run programs by sticking a , before them
-    distrobox # Nice escape hatch, integrates docker images with my environment
-
     bc # Calculator
     bottom # System viewer
-    ncdu # TUI disk usage
-    ripgrep # Better grep
-    fd # Better find
-    httpie # Better curl
+    comma # Install and run programs by sticking a , before them
     diffsitter # Better diff
+    distrobox # Nice escape hatch, integrates docker images with my environment
+    fd # Better find
+    fzf # Fuzzy finder
+    httpie # Better curl
     jq # JSON pretty printer and manipulator
-
+    ncdu # TUI disk usage
     nix-inspect # Inspect the path when in a nix environment
-
-    wormhole-william # Send files between computers
+    ripgrep # Better grep
+    sd # Sed replacement
   ];
 }
