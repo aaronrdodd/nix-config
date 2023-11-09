@@ -23,7 +23,6 @@ in
     ../_common/services/mosh.nix
     ../_common/services/oci-containers.nix
     ../_common/services/pipewire.nix
-    ../_common/services/printing.nix
     ../_common/services/secrets-service.nix
     ../_common/services/tailscale.nix
     ../_common/users/aaron
