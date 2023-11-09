@@ -23,17 +23,19 @@ in
 
     initialPassword = "hunter2";
     packages = with pkgs; [
+      _1password
+      _1password-gui
       age
       anki
       bitwarden
       chezmoi
-      discord
       git
       home-manager
       keepassxc
       neofetch
+      pfetch
       sops
-      tor-browser-bundle-bin
+      webcord
     ];
 
     openssh.authorizedKeys.keys = [
