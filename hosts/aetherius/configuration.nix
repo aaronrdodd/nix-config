@@ -19,13 +19,13 @@ in
     ../_common/services/antivirus.nix
     ../_common/services/avahi.nix
     ../_common/services/bluetooth.nix
+    ../_common/services/cups.nix
     ../_common/services/dns-security.nix
     ../_common/services/flatpak.nix
     ../_common/services/localisation.nix
     ../_common/services/mosh.nix
     ../_common/services/oci-containers.nix
     ../_common/services/pipewire.nix
-    ../_common/services/printing.nix
     ../_common/services/sane.nix
     ../_common/services/secrets-service.nix
     ../_common/services/tailscale.nix
