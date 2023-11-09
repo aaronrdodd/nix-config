@@ -19,8 +19,8 @@ jobs:
       - uses: "actions/checkout@v4"
         with:
           ref: "${{ (inputs.tag != null) && format('refs/tags/{0}', inputs.tag) || '' }}"
-      - uses: "DeterminateSystems/nix-installer-action@main"
-      - uses: "DeterminateSystems/flakehub-push@main"
+      - uses: "DeterminateSystems/nix-installer-action@v4"
+      - uses: "DeterminateSystems/flakehub-push@v4"
         with:
           visibility: "unlisted"
           name: "aaron-dodd/nix-config"
