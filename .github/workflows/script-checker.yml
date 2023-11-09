@@ -13,13 +13,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@main
         with:
           fetch-depth: 0
       - name: Install Nix
-        uses: DeterminateSystems/nix-installer-action@v4
+        uses: DeterminateSystems/nix-installer-action@main
       - name: Enable Magic Nix Cache
-        uses: DeterminateSystems/magic-nix-cache-action@v2
+        uses: DeterminateSystems/magic-nix-cache-action@main
       - name: Run Shell Check
         run: |
           nix-shell -p shellcheck --run 'shellcheck $(find . -type f -wholename "**/*.sh" -executable)'
