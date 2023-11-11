@@ -6,8 +6,7 @@
       fish_greeting = "";
     };
     shellAliases = {
-      captive-portal = "xdg-open http://$(ip --oneline route get 1.1.1.1 | awk '{print $3}')";
-      wormhole = "wormhole-william";
+      captive-portal = "xdg-open http://(ip --oneline route get 1.1.1.1 | awk '{print $3}')";
     };
   };
 }
