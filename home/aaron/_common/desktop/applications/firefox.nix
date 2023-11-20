@@ -45,7 +45,6 @@ in
         isDefault = true;
         bookmarks = { };
         extensions = with firefox-addons; [
-          bitwarden
           header-editor
           keepassxc-browser
           multi-account-containers

@@ -23,11 +23,8 @@ in
 
     initialPassword = "hunter2";
     packages = with pkgs; [
-      _1password
-      _1password-gui
       age
       anki
-      bitwarden
       chezmoi
       git
       home-manager
