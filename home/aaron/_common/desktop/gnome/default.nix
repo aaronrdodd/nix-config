@@ -35,7 +35,6 @@ in
       enabled-extensions = [
         "AlphabeticalAppGrid@stuarthayhurst"
         "appindicatorsupport@rgcjonas.gmail.com"
-        "blur-my-shell@aunetx"
       ];
 
       favorite-apps = [
