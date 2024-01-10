@@ -12,6 +12,8 @@
       sddm.enable = true;
       defaultSession = "plasmawayland";
     };
+
+    windowManager.icewm.enable = true;
   };
 
   services.packagekit.enable = true;

@@ -6,7 +6,6 @@
     ./fish.nix
     ./gh.nix
     ./nix-index.nix
-    ./productivity.nix
     ./skim.nix
     ./starship.nix
   ];

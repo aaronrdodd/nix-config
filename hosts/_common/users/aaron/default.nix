@@ -24,15 +24,12 @@ in
     initialPassword = "hunter2";
     packages = with pkgs; [
       age
-      anki
       chezmoi
       git
       home-manager
-      keepassxc
       neofetch
       pfetch
       sops
-      webcord
     ];
 
     openssh.authorizedKeys.keys = [

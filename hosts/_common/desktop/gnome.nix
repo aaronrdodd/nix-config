@@ -21,6 +21,7 @@
       gnome.enable = true;
       xterm.enable = false;
     };
+    windowManager.icewm.enable = true;
 
     excludePackages = [ pkgs.xterm ];
   };
@@ -38,15 +39,11 @@
   environment.systemPackages = with pkgs; [
     blackbox-terminal
     evince
-    firefox-esr
     gnome.gnome-system-monitor
     gnome.gnome-tweaks
     gnome.nautilus
     gnomeExtensions.alphabetical-app-grid
     gnomeExtensions.appindicator
-    gnomeExtensions.forge
-    gradience
-    vlc
   ] ++ (if config.services.flatpak.enable then [ gnome.gnome-software ] else [ ]);
 }
 
