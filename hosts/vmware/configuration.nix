@@ -3,7 +3,6 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 { lib, ... }:
 let
-  disk = "/dev/sda";
   hostId = "deadbeef";
   hostName = "vmware";
 in
@@ -12,10 +11,10 @@ in
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     (import ./disks.nix { })
-    (import ../_common/services/grub-bootloader.nix { devices = [ disk ]; })
+    ../_common/services/sd-bootloader.nix
 
     ../_common/global
-    ../_common/desktop/plasma.nix
+    ../_common/desktop/gnome.nix
     ../_common/services/amnesia.nix
     ../_common/services/dns-security.nix
     ../_common/services/flatpak.nix

@@ -95,7 +95,8 @@
             deadnix --edit "$@"
 
             for i in "$@"; do
-              ${pkgs.statix}/bin/statix fix "$i"
+              statix fix "$i"
+              statix check "$i"
             done
 
             nixpkgs-fmt "$@"
@@ -155,8 +156,6 @@
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
         };
       };
-
-      wallpapers = import ./home/aaron/_common/wallpapers;
     };
 }
 
