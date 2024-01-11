@@ -1,5 +1,4 @@
-{ disks ? [ "/dev/nvme0n1" ], ... }:
-{
+{ disks ? [ "/dev/nvme0n1" ], ... }: {
   disko.devices = {
     disk = {
       main = {
@@ -8,24 +7,20 @@
         content = {
           type = "gpt";
           partitions = {
-            boot = {
-              priority = 1;
-              size = "1M";
-              type = "EF02"; # for grub MBR
-            };
             ESP = {
-              priority = 2;
+              priority = 1;
               name = "ESP";
-              size = "512M";
+              size = "1G";
               type = "EF00";
               content = {
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
+                mountOptions = [ "fmask=0077" "dmask=0077" ];
               };
             };
             root = {
-              priority = 3;
+              priority = 2;
               size = "100%";
               content = {
                 type = "zfs";

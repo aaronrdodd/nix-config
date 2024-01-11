@@ -2,7 +2,6 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 let
-  disk = "/dev/nvme0n1";
   hostId = "f3105ab3";
   hostName = "aetherius";
 in
@@ -11,7 +10,7 @@ in
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     (import ./disks.nix { })
-    (import ../_common/services/grub-bootloader.nix { devices = [ disk ]; })
+    ../_common/services/sd-bootloader.nix
 
     ../_common/global
     ../_common/desktop/gnome.nix
