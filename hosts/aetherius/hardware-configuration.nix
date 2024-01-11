@@ -16,10 +16,15 @@
       inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
     ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ ];
+  boot = {
+    initrd = {
+      availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "usb_storage" "sd_mod" ];
+      kernelModules = [ ];
+    };
+
+    kernelModules = [ "kvm-amd" ];
+    extraModulePackages = [ ];
+  };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -28,14 +33,13 @@
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp1s0.useDHCP = lib.mkDefault true;
 
-  hardware.enableRedistributableFirmware = lib.mkDefault true;
-
-  services.xserver.videoDrivers = [
-    "amdgpu"
-  ];
+  hardware = {
+    enableRedistributableFirmware = lib.mkDefault true;
+    cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+    opengl.enable = true;
+  };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   # Power management
   powerManagement = {
@@ -61,8 +65,9 @@
         CPU_MAX_PERF_ON_BAT = 20;
       };
     };
-  };
 
-  # OpenGL
-  hardware.opengl.enable = true;
+    xserver.videoDrivers = [
+      "amdgpu"
+    ];
+  };
 }

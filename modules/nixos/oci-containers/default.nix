@@ -117,17 +117,19 @@ let
     image = mkOption {
       type = types.str;
     };
-    login.passwordFile = mkOption {
-      type = types.nullOr types.str;
-      default = null;
-    };
-    login.registry = mkOption {
-      type = types.nullOr types.str;
-      default = null;
-    };
-    login.username = mkOption {
-      type = types.nullOr types.str;
-      default = null;
+    login = {
+      passwordFile = mkOption {
+        type = types.nullOr types.str;
+        default = null;
+      };
+      registry = mkOption {
+        type = types.nullOr types.str;
+        default = null;
+      };
+      username = mkOption {
+        type = types.nullOr types.str;
+        default = null;
+      };
     };
     ports = mkOption {
       type = types.listOf (types.submodule {
@@ -226,8 +228,10 @@ in
     }
     else { });
 
-    virtualisation.oci-containers.backend = cfg.backend;
-    virtualisation.oci-containers.containers = mapAttrs mkContainer allContainers;
+    virtualisation.oci-containers = {
+      inherit (cfg) backend;
+      containers = mapAttrs mkContainer allContainers;
+    };
     systemd.services = mkMerge [
       (mapAttrs' mkPreStart (filterAttrs shouldPreStart allContainers))
       (mapAttrs' mkNetworkService (filterAttrs shouldNetworkService allContainers))

@@ -1,8 +1,4 @@
-{ pkgs, ... }:
-let
-  inherit (pkgs.nur.repos.rycee) firefox-addons;
-in
-{
+{ pkgs, ... }: {
   programs.firefox = {
     enable = true;
     package = pkgs.firefox-esr.override {
@@ -44,15 +40,6 @@ in
       aaron = {
         isDefault = true;
         bookmarks = { };
-        extensions = with firefox-addons; [
-          header-editor
-          keepassxc-browser
-          multi-account-containers
-          plasma-integration
-          redirector
-          skip-redirect
-          ublock-origin
-        ];
         search = {
           engines = {
             "Brave Search" = {

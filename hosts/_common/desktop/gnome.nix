@@ -14,16 +14,20 @@
   };
 
   # Enable the GNOME Desktop Environment and disable xterm
-  services.xserver = {
-    enable = true;
-    displayManager.gdm.enable = true;
-    desktopManager = {
-      gnome.enable = true;
-      xterm.enable = false;
-    };
-    windowManager.icewm.enable = true;
+  services = {
+    gnome.core-utilities.enable = false;
+    gnome.gnome-keyring.enable = true;
+    xserver = {
+      enable = true;
+      displayManager.gdm.enable = true;
+      desktopManager = {
+        gnome.enable = true;
+        xterm.enable = false;
+      };
+      windowManager.icewm.enable = true;
 
-    excludePackages = [ pkgs.xterm ];
+      excludePackages = [ pkgs.xterm ];
+    };
   };
 
 
@@ -31,9 +35,6 @@
   environment.gnome.excludePackages = with pkgs; [
     gnome-tour
   ];
-
-  services.gnome.core-utilities.enable = false;
-  services.gnome.gnome-keyring.enable = true;
 
   # Add desktop packages
   environment.systemPackages = with pkgs; [

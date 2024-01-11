@@ -36,29 +36,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Code formatting
-    nix-formatter-pack = {
-      url = "github:Gerschtli/nix-formatter-pack";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # Secrets management
     sops-nix = {
       url = "github:mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nixpkgs-stable.follows = "nixpkgs-stable";
     };
-
-    # Nix User Repository
-    nur = {
-      url = "github:nix-community/nur";
-    };
   };
 
   outputs =
     { self
     , nixpkgs
-    , nix-formatter-pack
     , home-manager
     , ...
     } @ inputs:
@@ -91,31 +79,28 @@
       # Formatter for your nix files
       # Accessible through 'nix fmt'
       formatter = forAllSystems (system:
-        nix-formatter-pack.lib.mkFormatter {
+        let
           pkgs = nixpkgs.legacyPackages.${system};
-          config.tools = {
-            alejandra.enable = false;
-            deadnix.enable = true;
-            nixpkgs-fmt.enable = true;
-            statix.enable = true;
-          };
+        in
+        pkgs.writeShellApplication {
+          name = "nix-flake-format";
+          runtimeInputs = with pkgs; [
+            nixpkgs-fmt
+            deadnix
+            statix
+          ];
+          text = ''
+            set -o xtrace
+
+            deadnix --edit "$@"
+
+            for i in "$@"; do
+              ${pkgs.statix}/bin/statix fix "$i"
+            done
+
+            nixpkgs-fmt "$@"
+          '';
         }
-      );
-
-      # Custom checker for your nix files
-      # Accessible through 'nix flake check'
-      checks = forAllSystems (system: {
-        nix-formatter-pack-check = nix-formatter-pack.lib.mkCheck {
-          pkgs = nixpkgs.legacyPackages.${system};
-          config.tools = {
-            alejandra.enable = false;
-            deadnix.enable = true;
-            nixpkgs-fmt.enable = true;
-          };
-
-          checkFiles = [ ./. ];
-        };
-      }
       );
 
       # Your custom packages and modifications, exported as overlays
