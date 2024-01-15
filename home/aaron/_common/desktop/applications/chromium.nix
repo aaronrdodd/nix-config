@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   programs.chromium = {
     enable = true;
-    package = pkgs.brave;
+    package = pkgs.chromium;
     extensions = [
       { id = "oboonakemofpalcgghocfoadofidjkkk"; } # keepassxc-browser
       { id = "cimiefiiaegbelhefglklhhakcgmhkai"; } # plasma-integration
@@ -12,10 +12,10 @@
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
-      "text/html" = [ "brave-browser.desktop" ];
-      "text/xml" = [ "brave-browser.desktop" ];
-      "x-scheme-handler/http" = [ "brave-browser.desktop" ];
-      "x-scheme-handler/https" = [ "brave-browser.desktop" ];
+      "text/html" = [ "chromium-browser.desktop" ];
+      "text/xml" = [ "chromium-browser.desktop" ];
+      "x-scheme-handler/http" = [ "chromium-browser.desktop" ];
+      "x-scheme-handler/https" = [ "chromium-browser.desktop" ];
     };
   };
 }

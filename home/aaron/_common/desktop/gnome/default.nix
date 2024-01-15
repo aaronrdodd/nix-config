@@ -33,7 +33,7 @@ in
         "org.gnome.Nautilus.desktop"
         "firefox.desktop"
         "firefox-esr.desktop"
-        "brave-browser.desktop"
+        "chromium-browser.desktop"
         "vlc.desktop"
         "org.gnome.Software.desktop"
       ];
