@@ -45,6 +45,7 @@
     gnome.nautilus
     gnomeExtensions.alphabetical-app-grid
     gnomeExtensions.appindicator
+    gnomeExtensions.kimpanel
   ] ++ (if config.services.flatpak.enable then [ gnome.gnome-software ] else [ ]);
 }
 

@@ -25,12 +25,14 @@ in
       enabled-extensions = [
         "AlphabeticalAppGrid@stuarthayhurst"
         "appindicatorsupport@rgcjonas.gmail.com"
+        "kimpanel@kde.org"
       ];
 
       favorite-apps = [
         "com.raggesilver.BlackBox.desktop"
         "org.gnome.Nautilus.desktop"
         "firefox.desktop"
+        "firefox-esr.desktop"
         "brave-browser.desktop"
         "vlc.desktop"
         "org.gnome.Software.desktop"
