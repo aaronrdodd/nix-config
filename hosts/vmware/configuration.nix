@@ -50,6 +50,9 @@ in
   boot = {
     supportedFilesystems = [ "zfs" ];
 
+    # Disable CPU mitigations (this is fine because its a VM)
+    kernelParams = [ "quiet" "mitigations=off" ];
+
     # Enable zfs for virtual machines
     zfs.devNodes = lib.mkDefault "/dev/disk/by-path";
   };
