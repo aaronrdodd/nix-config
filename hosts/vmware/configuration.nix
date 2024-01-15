@@ -31,10 +31,12 @@ in
     # Define your hostname and hostid.
     inherit hostId hostName;
 
+    # Disable firewall (this is fine because its a VM)
+    firewall.enable = false;
+
     # Enable networking
     networkmanager.enable = true;
   };
-
 
   # Enable guest additions
   virtualisation.vmware.guest.enable = true;
