@@ -13,6 +13,10 @@ in
       tap-to-click = true;
     };
 
+    "org/gnome/desktop/wm/preferences" = {
+      button-layout = ":minimize,maximize,close";
+    };
+
     "org/gnome/mutter" = {
       dynamic-workspaces = true;
       edge-tiling = true;
