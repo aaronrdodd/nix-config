@@ -25,6 +25,7 @@ in
       enabled-extensions = [
         "AlphabeticalAppGrid@stuarthayhurst"
         "appindicatorsupport@rgcjonas.gmail.com"
+        "dash-to-dock@micxgx.gmail.com"
         "kimpanel@kde.org"
       ];
 
@@ -35,6 +36,10 @@ in
         "vlc.desktop"
         "org.gnome.Software.desktop"
       ];
+    };
+
+    "org/gnome/shell/extensions/dash-to-dock" = {
+      apply-custom-theme = true;
     };
 
     "com/raggesilver/BlackBox" = {
