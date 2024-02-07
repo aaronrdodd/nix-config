@@ -17,10 +17,10 @@
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
-      "text/html" = [ "chromium-browser.desktop" ];
-      "text/xml" = [ "chromium-browser.desktop" ];
-      "x-scheme-handler/http" = [ "chromium-browser.desktop" ];
-      "x-scheme-handler/https" = [ "chromium-browser.desktop" ];
+      "text/html" = [ "vivaldi-stable.desktop" ];
+      "text/xml" = [ "vivaldi-stable.desktop" ];
+      "x-scheme-handler/http" = [ "vivaldi-stable.desktop" ];
+      "x-scheme-handler/https" = [ "vivaldi-stable.desktop" ];
     };
   };
 }

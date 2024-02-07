@@ -15,17 +15,24 @@
 
   # Enable the GNOME Desktop Environment and disable xterm
   services = {
-    gnome.core-utilities.enable = false;
-    gnome.gnome-keyring.enable = true;
+    gnome = {
+      core-utilities.enable = false;
+      gnome-keyring.enable = true;
+      sushi.enable = true;
+    };
+
+    gvfs.enable = true;
+
     xserver = {
       enable = true;
       displayManager.gdm.enable = true;
+
       desktopManager = {
         gnome.enable = true;
         xterm.enable = false;
       };
-      windowManager.icewm.enable = true;
 
+      windowManager.icewm.enable = true;
       excludePackages = [ pkgs.xterm ];
     };
   };

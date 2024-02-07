@@ -2,6 +2,8 @@
   imports = [
     ./auto-upgrade.nix
     ./disko.nix
+    ./firmware-updater.nix
+    ./fonts.nix
     ./gpg.nix
     ./home-manager.nix
     ./nix-settings.nix

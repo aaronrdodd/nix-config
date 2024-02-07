@@ -25,6 +25,7 @@ in
     ../_common/services/pipewire.nix
     ../_common/services/secrets-service.nix
     ../_common/services/tailscale.nix
+    ../_common/services/video-acceleration.nix
     ../_common/users/aaron
   ];
 
