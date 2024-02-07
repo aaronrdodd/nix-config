@@ -7,8 +7,13 @@
         content = {
           type = "gpt";
           partitions = {
-            ESP = {
+            boot = {
               priority = 1;
+              size = "1M";
+              type = "EF02"; # For Grub MBR
+            };
+            ESP = {
+              priority = 2;
               name = "ESP";
               size = "1G";
               type = "EF00";
@@ -20,7 +25,7 @@
               };
             };
             root = {
-              priority = 2;
+              priority = 3;
               size = "100%";
               content = {
                 type = "zfs";
