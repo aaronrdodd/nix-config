@@ -3,14 +3,14 @@
   services.xserver = {
     enable = true;
 
-    desktopManager.plasma5 = {
+    desktopManager.plasma6 = {
       enable = true;
-      runUsingSystemd = true;
+      enableQt5Integration = false;
     };
 
     displayManager = {
       sddm.enable = true;
-      defaultSession = "plasmawayland";
+      defaultSession = "plasma";
     };
 
     windowManager.icewm.enable = true;
@@ -22,7 +22,7 @@
     adb.enable = true;
     dconf.enable = true;
     kdeconnect.enable = true;
-    ssh.askPassword = lib.mkForce "${pkgs.libsForQt5.ksshaskpass.out}/bin/ksshaskpass";
+    ssh.askPassword = lib.mkForce "${pkgs.kdePackages.ksshaskpass.out}/bin/ksshaskpass";
   };
 
   environment = {
@@ -38,8 +38,8 @@
       plasma-browser-integration
     ] ++ (if config.services.flatpak.enable
     then [
-      libsForQt5.discover
-      libsForQt5.packagekit-qt
+      kdePackages.discover
+      kdePackages.packagekit-qt
       packagekit
     ]
     else [ ]);

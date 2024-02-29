@@ -36,7 +36,7 @@ in
       favorite-apps = [
         "com.raggesilver.BlackBox.desktop"
         "org.gnome.Nautilus.desktop"
-        "vivaldi-stable.desktop"
+        "brave.desktop"
         "vlc.desktop"
         "org.gnome.Software.desktop"
       ];

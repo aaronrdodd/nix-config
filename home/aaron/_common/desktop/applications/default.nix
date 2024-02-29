@@ -1,6 +1,7 @@
 {
   imports = [
-    ./vivaldi.nix
+    ./brave.nix
+    ./firefox.nix
   ];
 }
 

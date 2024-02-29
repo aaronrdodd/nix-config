@@ -43,7 +43,7 @@ in
     (mkIf (cfg.defaultSecretsService == "keepassxc" && plasmaEnabled) {
       programs.ssh = {
         enableAskPassword = mkForce true;
-        askPassword = mkForce "${pkgs.libsForQt5.ksshaskpass.out}/bin/ksshaskpass";
+        askPassword = mkForce "${pkgs.kdePackages.ksshaskpass.out}/bin/ksshaskpass";
       };
     })
   ]);

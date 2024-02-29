@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   programs.chromium = {
     enable = true;
-    package = pkgs.vivaldi;
+    package = pkgs.brave;
     extensions = [
       { id = "oboonakemofpalcgghocfoadofidjkkk"; } # keepassxc-browser
       { id = "cimiefiiaegbelhefglklhhakcgmhkai"; } # plasma-integration
@@ -10,17 +10,16 @@
   };
 
   home.packages = with pkgs; [
-    vivaldi
-    vivaldi-ffmpeg-codecs
+    brave
   ];
 
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
-      "text/html" = [ "vivaldi-stable.desktop" ];
-      "text/xml" = [ "vivaldi-stable.desktop" ];
-      "x-scheme-handler/http" = [ "vivaldi-stable.desktop" ];
-      "x-scheme-handler/https" = [ "vivaldi-stable.desktop" ];
+      "text/html" = [ "brave.desktop" ];
+      "text/xml" = [ "brave.desktop" ];
+      "x-scheme-handler/http" = [ "brave.desktop" ];
+      "x-scheme-handler/https" = [ "brave.desktop" ];
     };
   };
 }
