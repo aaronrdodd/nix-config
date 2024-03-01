@@ -1,7 +1,7 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ lib, ... }:
+_:
 let
   disk = "/dev/sda";
   hostId = "deadbeef";
@@ -16,7 +16,6 @@ in
 
     ../_common/global
     ../_common/desktop/plasma.nix
-    ../_common/services/amnesia.nix
     ../_common/services/dns-security.nix
     ../_common/services/flatpak.nix
     ../_common/services/localisation.nix
@@ -42,22 +41,6 @@ in
 
   # Enable guest additions
   virtualisation.vmware.guest.enable = true;
-
-  # Enable amnesia
-  nixos.amnesia = {
-    enable = true;
-    fileSystem = "zfs";
-  };
-
-  boot = {
-    supportedFilesystems = [ "zfs" ];
-
-    # Disable CPU mitigations (this is fine because its a VM)
-    kernelParams = [ "quiet" "mitigations=off" ];
-
-    # Enable zfs for virtual machines
-    zfs.devNodes = lib.mkDefault "/dev/disk/by-path";
-  };
 
   # Enable secrets
   sops.defaultSopsFile = ../../secrets/hosts/${hostName}/secrets.yaml;
