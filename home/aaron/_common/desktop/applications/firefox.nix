@@ -55,6 +55,56 @@
 
               definedAliases = [ "@b" ];
             };
+            "Nix flakes" = {
+              urls = [{
+                template = "https://search.nixos.org/flakes";
+                params = [
+                  {
+                    name = "query";
+                    value = "{searchTerms}";
+                  }
+                ];
+              }];
+
+              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+              definedAliases = [ "@nf" ];
+            };
+            "Nix flake options" = {
+              urls = [{
+                template = "https://search.nixos.org/flakes";
+                params = [
+                  {
+                    name = "type";
+                    value = "options";
+                  }
+                  {
+                    name = "query";
+                    value = "{searchTerms}";
+                  }
+                ];
+              }];
+
+              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+              definedAliases = [ "@nfo" ];
+            };
+            "Nix flake packages" = {
+              urls = [{
+                template = "https://search.nixos.org/flakes";
+                params = [
+                  {
+                    name = "type";
+                    value = "packages";
+                  }
+                  {
+                    name = "query";
+                    value = "{searchTerms}";
+                  }
+                ];
+              }];
+
+              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+              definedAliases = [ "@nfp" ];
+            };
             "Nix options" = {
               urls = [{
                 template = "https://search.nixos.org/options";
