@@ -1,4 +1,15 @@
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, lib, ... }:
+let
+  discover-wrapped = pkgs.symlinkJoin {
+    name = "discover-flatpak-wrapped";
+    paths = [ pkgs.kdePackages.discover ];
+    buildInputs = [ pkgs.makeWrapper ];
+    postBuild = ''
+      wrapProgram $out/bin/plasma-discover --add-flags "--backends flatpak"
+    '';
+  };
+in
+{
   # Enable the KDE Plasma Desktop Environment.
   services.xserver = {
     enable = true;
@@ -38,9 +49,7 @@
       plasma-browser-integration
     ] ++ (if config.services.flatpak.enable
     then [
-      kdePackages.discover
-      kdePackages.packagekit-qt
-      packagekit
+      discover-wrapped
     ]
     else [ ]);
   };
