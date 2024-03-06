@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   programs.firefox = {
     enable = true;
-    package = pkgs.firefox-esr.override {
+    package = pkgs.firefox.override {
       cfg = {
         smartCardSupport = true;
       };
