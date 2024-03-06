@@ -1,8 +1,8 @@
 keys:
   - &users:
-    - &aaron_dodd 'age1dklej440dm807874vp2lrz7m72094s2v27autrhs7u0vjpxe75csttf2e0'
+    - &aaron_dodd 'age1uey2wd2fqf46tnhjkn904mar4zdkfxt6n6tx8k9fp2du5ypqk92sjtv87p'
   - &hosts:
-    - &aetherius 'age1xakuvc5xsx07zrgqq02vtj488wcqf5z5966f72zjjxtv0r9jwfvqpw56yz'
+    - &aetherius 'age1l3kvyps4ltkpaz7ht6mmwaxwvc3gjm3ht0e9qdkl5dyszmv4g4rsumnu9x'
 
 creation_rules:
   - path_regex: secrets/hosts/aetherius/secrets(/[^/]+)?\.ya?ml$
