@@ -2,9 +2,21 @@
 with lib.hm.gvariant;
 let
   avatar = "${../assets/face.png}";
+  wallpaper = "file://${../assets/bliss.jpg}";
 in
 {
   dconf.settings = {
+    "org/gnome/desktop/background" = {
+      picture-uri = wallpaper;
+      picture-uri-dark = wallpaper;
+      picture-options = "zoom";
+    };
+
+    "org/gnome/desktop/screensaver" = {
+      picture-uri = wallpaper;
+      picture-options = "zoom";
+    };
+
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
     };
