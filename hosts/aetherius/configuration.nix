@@ -13,7 +13,7 @@ in
     ../_common/services/sd-bootloader.nix
 
     ../_common/global
-    ../_common/desktop/plasma.nix
+    ../_common/desktop/gnome.nix
     ../_common/services/amnesia.nix
     ../_common/services/antivirus.nix
     ../_common/services/avahi.nix
