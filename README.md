@@ -236,3 +236,7 @@ creation_rules:
 
 [mic92/sops-nix]: https://github.com/mic92/sops-nix
 [.sops.yaml]: ./.sops.yaml
+
+## TODO
+
+- Rewrite the README.md
