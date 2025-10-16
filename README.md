@@ -1,9 +1,9 @@
 # Aaron's [NixOS] and [Home Manager] configurations
 
 [![built with nix](https://img.shields.io/static/v1?logo=NixOS&logoColor=white&color=blue&label=&message=Built%20with%20Nix&style=for-the-badge)](https://builtwithnix.org)
-[![flake-checker](https://img.shields.io/github/actions/workflow/status/aaron-dodd/nix-config/flake-checker.yml?label=flake%20checker&style=for-the-badge)](https://github.com/aaron-dodd/nix-config/actions/workflows/flake-checker.yml)
-[![nix-checker](https://img.shields.io/github/actions/workflow/status/aaron-dodd/nix-config/nix-checker.yml?label=nix%20checker&style=for-the-badge)](https://github.com/aaron-dodd/nix-config/actions/workflows/nix-checker.yml)
-[![script-checker](https://img.shields.io/github/actions/workflow/status/aaron-dodd/nix-config/script-checker.yml?label=script%20checker&style=for-the-badge)](https://github.com/aaron-dodd/nix-config/actions/workflows/script-checker.yml)
+[![flake-checker](https://img.shields.io/github/actions/workflow/status/aaronrdodd/nix-config/flake-checker.yml?label=flake%20checker&style=for-the-badge)](https://github.com/aaronrdodd/nix-config/actions/workflows/flake-checker.yml)
+[![nix-checker](https://img.shields.io/github/actions/workflow/status/aaronrdodd/nix-config/nix-checker.yml?label=nix%20checker&style=for-the-badge)](https://github.com/aaronrdodd/nix-config/actions/workflows/nix-checker.yml)
+[![script-checker](https://img.shields.io/github/actions/workflow/status/aaronrdodd/nix-config/script-checker.yml?label=script%20checker&style=for-the-badge)](https://github.com/aaronrdodd/nix-config/actions/workflows/script-checker.yml)
 
 [NixOS]: https://nixos.org/
 [Home Manager]: https://github.com/nix-community/home-manager
@@ -55,7 +55,7 @@ Two installation options are available:
 2. Run the following command to perform an automated installation:
 
 ```bash
-curl -sL https://raw.githubusercontent.com/aaron-dodd/nix-config/main/scripts/install-system.sh > install-system.sh
+curl -sL https://raw.githubusercontent.com/aaronrdodd/nix-config/main/scripts/install-system.sh > install-system.sh
 chmod +x ./install-system.sh
 ./install-script.sh <hostname> <username>
 ```
@@ -72,7 +72,7 @@ The automated installation will wipe all data on the disks and will need to be
   already:
 
 ```bash
-git clone https://github.com/aaron-dodd/nix-config.git
+git clone https://github.com/aaronrdodd/nix-config.git
 ```
 
 - Edit the nix files.
